@@ -1,11 +1,12 @@
 {% extends "shared/base.html"%}
 {% block body%}
 <div class="container">
+    <form>
     <div class="row mt-5">
         <div class="col paper p-5 shadow">
-                <form>
+
                     <div class="row">
-                        <div class="col-sm-4">
+                        <div class="col">
                             <label for="logo_upload" class="logo_upload_label text-center rounded-3"><img src="https://cdn2.iconfinder.com/data/icons/instagram-ui/48/jee-80-512.png" width="100" height="100" class="mt-4"><br>Upload Logo</label>
                             <input type="file" id="logo_upload">
                         </div>
@@ -17,10 +18,10 @@
                            <p><input type="text" class="rounded-2 border border-2" placeholder="City, State"></p>
 
                         </div>
-                        <div class="col-md-3">
+                        <div class="col">
                             <p><input type="text" class="rounded-2 border border-2 text-center" value="Receipt"></p>
                             <p><input type="text" class="rounded-2 border border-2 text-center" placeholder="Number" value="INV0001"></p>
-                            <p class="text-center"><input type="date" class="rounded-2 border border-2 text-center" ></p>
+                            <p><input type="date" class="rounded-2 border border-2 text-center" ></p>
                         </div>
                     </div>
                     <div class="row">
@@ -29,13 +30,18 @@
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-12 col-md-8">
-                            <p><b>Bill to:</b></p>
+                        <div class="col">
+                            <p><b>Received From:</b></p>
                             <p><input type="text" class="rounded-2 border border-2" placeholder="Recipient Name "></p>
                             <p><input type="number" class="rounded-2 border border-2" placeholder="Recipient number "></p>
 
                         </div>
-                        <div class="col-6 col-md-4">
+                        <div class="col">
+                            <p><b>Amount Received:</b></p>
+                            <p><input type="number" class="rounded-2 border border-2" placeholder="Amount"></p>
+
+                        </div>
+                        <div class="col">
                             <p><b>Payment Mode:</b></p>
                             <p>
                                 <select class="rounded-2 border border-2">
@@ -53,27 +59,68 @@
                     </div>
                     <div class="row">
                         <div class="col">
-                            <table class="table table-bordered text-center">
-                                <thead>
-                                    <tr>
-                                        <td>Description</td>
-                                        <td>Rate</td>
-                                        <td>Quantity</td>
-                                        <td>Amount</td>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <td></td>
-                                    </tr>
-                                </tbody>
-                            </table>
+                              <div class="table-responsive">
+                                <table class="table table-bordered text-center">
+                                    <thead>
+                                        <tr>
+                                            <td>Description</td>
+                                            <td>Rate</td>
+                                            <td>Quantity</td>
+                                            <td>Amount</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td><input type="text" class="rounded-2 border border-2"></td>
+                                            <td><input type="number" class="rounded-2 border border-2"></td>
+                                            <td><input type="number" class="rounded-2 border border-2" style="width: 60px;"></td>
+                                            <td>NU. 30,000</td>
+                                        </tr>
+                                        <tr>
+                                            <td colspan="2"></td>
+                                            <td>Total Amount</td>
+                                            <td>Nu. 3000</td>
+                                        </tr>
+                                         <tr>
+                                            <td colspan="2"></td>
+                                            <td>Total Amount Paid</td>
+                                            <td>Nu. 3000</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                              </div>
                         </div>
                     </div>
 
-                </form>
+                    <div class="row">
+                        <div class="col">
+                            Signature:
+                        </div>
+
+                    </div>
+                    <div class="row mt-5">
+                        <div class="col-md-2 text-center">
+                            OR
+                        </div>
+                    </div>
+                    <div class="row mt-5">
+                        <div class="col">
+                           <label for="signature_upload" class="logo_upload_label text-center rounded-3"><img src="https://cdn2.iconfinder.com/data/icons/instagram-ui/48/jee-80-512.png" width="100" height="100" class="mt-4"><br>Upload Signature</label>
+                            <input type="file" id="signature_upload" style="visibility: hidden;">
+                        </div>
+
+                    </div>
+
         </div>
+
+
     </div>
+        <div class="row mt-4 mb-5">
+            <div class="col">
+                 <button type="button" class="btn btn-primary">Generate Receipt</button>
+            </div>
+        </div>
+    </form>
 
 </div>
 {% endblock %}
