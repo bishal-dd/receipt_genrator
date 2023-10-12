@@ -9,6 +9,7 @@
                         <div class="col">
                             <label for="logo_upload" class="logo_upload_label text-center rounded-3"><img src="https://cdn2.iconfinder.com/data/icons/instagram-ui/48/jee-80-512.png" width="100" height="100" class="mt-4"><br>Upload Logo</label>
                             <input type="file" id="logo_upload">
+                            <img id="uploaded_logo" src="" alt="Uploaded Logo" class="mt-4">
                         </div>
                         <div class="col">
                            <p><input type="text" class="rounded-2 border border-2" placeholder="Company Name"></p>
@@ -21,7 +22,7 @@
                         <div class="col">
                             <p><input type="text" class="rounded-2 border border-2 text-center" value="Receipt"></p>
                             <p><input type="text" class="rounded-2 border border-2 text-center" placeholder="Number" value="INV0001"></p>
-                            <p><input type="date" class="rounded-2 border border-2 text-center" ></p>
+                            <p><input type="date" class="rounded-2 border border-2 text-center" id="dateInput"></p>
                         </div>
                     </div>
                     <div class="row">
@@ -44,12 +45,12 @@
                         <div class="col">
                             <p><b>Payment Mode:</b></p>
                             <p>
-                                <select class="rounded-2 border border-2">
+                                <select class="rounded-2 border border-2" id="paymentMode">
                                     <option value="Bank Transfer">Bank Transfer</option>
                                     <option value="cash">Cash</option>
                                 </select>
                             </p>
-                            <p><input type="number" class="rounded-2 border border-2" placeholder="Journal Number"></p>
+                            <p><input type="number" class="rounded-2 border border-2" placeholder="Journal Number" id="journalNumber"></p>
                         </div>
                     </div>
                     <div class="row">
@@ -57,40 +58,43 @@
                             <hr>
                         </div>
                     </div>
-                    <div class="row">
+                   <div class="row">
                         <div class="col">
-                              <div class="table-responsive">
+                            <div class="table-responsive">
                                 <table class="table table-bordered text-center">
                                     <thead>
                                         <tr>
-                                            <td>Description</td>
+                                            <td>
+                                                <button id="addRowButton" class="btn btn-primary">+</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                                Description
+                                            </td>
                                             <td>Rate</td>
                                             <td>Quantity</td>
                                             <td>Amount</td>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr>
+                                        <tr class="data-row">
                                             <td><input type="text" class="rounded-2 border border-2"></td>
-                                            <td><input type="number" class="rounded-2 border border-2"></td>
-                                            <td><input type="number" class="rounded-2 border border-2" style="width: 60px;"></td>
-                                            <td>NU. 30,000</td>
+                                            <td><input type="number" class="rounded-2 border border-2 rate-input"></td>
+                                            <td><input type="number" class="rounded-2 border border-2 quantity-input" style="width: 60px;"></td>
+                                            <td><p class="amount-text"></p></td>
                                         </tr>
                                         <tr>
                                             <td colspan="2"></td>
                                             <td>Total Amount</td>
-                                            <td>Nu. 3000</td>
+                                            <td><p id="totalAmount"></p></td>
                                         </tr>
-                                         <tr>
+                                        <tr>
                                             <td colspan="2"></td>
                                             <td>Total Amount Paid</td>
-                                            <td>Nu. 3000</td>
+                                            <td><p id="totalAmountpaid"></p></td>
                                         </tr>
                                     </tbody>
                                 </table>
-                              </div>
+                            </div>
                         </div>
-                    </div>
+                   </div>
 
                     <div class="row">
                         <div class="col">
