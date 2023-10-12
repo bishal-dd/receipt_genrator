@@ -1,0 +1,19 @@
+body {
+ background-color: #f3f4f6;
+}
+
+.paper{
+ background-color: #ffffff;
+}
+
+#logo_upload{
+    visibility: hidden;
+}
+
+.logo_upload_label{
+    background-color: #f3f4f6;
+    min-width: 300px;
+    min-height: 200px;
+    align-items: center;
+    justify-content: center;
+}

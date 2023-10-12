@@ -1,0 +1,79 @@
+{% extends "shared/base.html"%}
+{% block body%}
+<div class="container">
+    <div class="row mt-5">
+        <div class="col paper p-5 shadow">
+                <form>
+                    <div class="row">
+                        <div class="col-sm-4">
+                            <label for="logo_upload" class="logo_upload_label text-center rounded-3"><img src="https://cdn2.iconfinder.com/data/icons/instagram-ui/48/jee-80-512.png" width="100" height="100" class="mt-4"><br>Upload Logo</label>
+                            <input type="file" id="logo_upload">
+                        </div>
+                        <div class="col">
+                           <p><input type="text" class="rounded-2 border border-2" placeholder="Company Name"></p>
+                           <p><input type="email" class="rounded-2 border border-2" placeholder="Email"></p>
+                           <p><input type="number" class="rounded-2 border border-2" placeholder="Phone Number"></p>
+                           <p><input type="text" class="rounded-2 border border-2" placeholder="Address"></p>
+                           <p><input type="text" class="rounded-2 border border-2" placeholder="City, State"></p>
+
+                        </div>
+                        <div class="col-md-3">
+                            <p><input type="text" class="rounded-2 border border-2 text-center" value="Receipt"></p>
+                            <p><input type="text" class="rounded-2 border border-2 text-center" placeholder="Number" value="INV0001"></p>
+                            <p class="text-center"><input type="date" class="rounded-2 border border-2 text-center" ></p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col">
+                            <hr>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-12 col-md-8">
+                            <p><b>Bill to:</b></p>
+                            <p><input type="text" class="rounded-2 border border-2" placeholder="Recipient Name "></p>
+                            <p><input type="number" class="rounded-2 border border-2" placeholder="Recipient number "></p>
+
+                        </div>
+                        <div class="col-6 col-md-4">
+                            <p><b>Payment Mode:</b></p>
+                            <p>
+                                <select class="rounded-2 border border-2">
+                                    <option value="Bank Transfer">Bank Transfer</option>
+                                    <option value="cash">Cash</option>
+                                </select>
+                            </p>
+                            <p><input type="number" class="rounded-2 border border-2" placeholder="Journal Number"></p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col">
+                            <hr>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col">
+                            <table class="table table-bordered text-center">
+                                <thead>
+                                    <tr>
+                                        <td>Description</td>
+                                        <td>Rate</td>
+                                        <td>Quantity</td>
+                                        <td>Amount</td>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                </form>
+        </div>
+    </div>
+
+</div>
+{% endblock %}
