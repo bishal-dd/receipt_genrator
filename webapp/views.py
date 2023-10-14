@@ -5,7 +5,9 @@ from django.contrib.auth.decorators import login_required
 
 
 def index(request):
-    user_profile = Profile.objects.filter(user=request.user).first()
+    user_profile = None
+    if request.user.is_authenticated:
+        user_profile = Profile.objects.filter(user=request.user).first()
 
     return render(request, 'index.html', {'user_profile': user_profile})
 

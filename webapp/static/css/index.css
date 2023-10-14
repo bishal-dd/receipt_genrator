@@ -18,7 +18,8 @@ body {
 }
 
 #uploaded_logo,
-#uploaded_signature {
+#uploaded_signature,
+#logo_edit {
   display: none;
   min-width: 300px;
   height: 200px;

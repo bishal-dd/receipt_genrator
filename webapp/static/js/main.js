@@ -180,6 +180,19 @@ $(document).ready(function () {
     }
   });
 
+  $("#logo_edit").change(function () {
+    const file = this.files[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onload = function (e) {
+        $("#edited_logo").attr("src", e.target.result);
+        $("#edited_logo").show();
+        $("#logo_edit").val(e.target.result);
+      };
+      reader.readAsDataURL(file);
+    }
+  });
+
   $("#signature_upload").change(function () {
     const file = this.files[0];
     if (file) {
