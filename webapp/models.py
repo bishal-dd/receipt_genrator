@@ -16,6 +16,7 @@ class Profile(models.Model):
 class Receipt(models.Model):
     recipient_name = models.CharField(max_length=100, null=False)
     recipient_phone = models.IntegerField(null=False)
+    recipient_no = models.CharField(max_length=100, null=False)
     amount = models.FloatField(null=False)
     Journal_no = models.IntegerField(null=True)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
@@ -30,6 +31,7 @@ class Service(models.Model):
 
 
 class Version(models.Model):
-    mode = models.CharField(max_length=10, choices=[('trial', 'trial'), ('paid', 'paid')], default='trial')
+    mode = models.CharField(max_length=10, choices=[(
+        'trial', 'trial'), ('paid', 'paid')], default='trial')
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     use_count = models.IntegerField(null=False, default=0)
