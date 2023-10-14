@@ -16,7 +16,6 @@ class Profile(models.Model):
 class Receipt(models.Model):
     recipient_name = models.CharField(max_length=100, null=False)
     recipient_phone = models.IntegerField(null=False)
-    recipient_no = models.CharField(max_length=100, null=False)
     amount = models.FloatField(null=False)
     Journal_no = models.IntegerField(null=True)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
@@ -26,7 +25,7 @@ class Service(models.Model):
     description = models.CharField(max_length=5000, null=False)
     rate = models.FloatField(null=False)
     quantity = models.IntegerField(null=False)
-    Amount = models.IntegerField(null=False)
+    amount = models.IntegerField(null=False)
     receipt = models.ForeignKey(Receipt, on_delete=models.CASCADE)
 
 

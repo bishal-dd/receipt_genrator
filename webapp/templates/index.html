@@ -1,157 +1,340 @@
-{% extends "shared/base.html"%}
-{% block body%}
+{% extends "shared/base.html"%} {% block body%}
 <div class="container">
-    <form>
+  <form>
     <div class="row mt-5">
-        <div class="col paper p-5 shadow">
-
-                    <div class="row">
-                        <div class="col">
-                            <label for="logo_upload" class="logo_upload_label text-center rounded-3"><img src="https://cdn2.iconfinder.com/data/icons/instagram-ui/48/jee-80-512.png" width="100" height="100" class="mt-4"><br>Upload Logo</label>
-                            <input type="file" id="logo_upload">
-                            <img id="uploaded_logo" src="" alt="Uploaded Logo" class="mt-4">
-                        </div>
-                        <div class="col">
-                           <p><input type="text" class="rounded-2 border border-2" placeholder="Company Name"></p>
-                           <p><input type="email" class="rounded-2 border border-2" placeholder="Email"></p>
-                           <p><input type="number" class="rounded-2 border border-2" placeholder="Phone Number"></p>
-                           <p><input type="text" class="rounded-2 border border-2" placeholder="Address"></p>
-                           <p><input type="text" class="rounded-2 border border-2" placeholder="City, State"></p>
-
-                        </div>
-                        <div class="col">
-                            <p><input type="text" class="rounded-2 border border-2 text-center" value="Receipt"></p>
-                            <p><input type="text" class="rounded-2 border border-2 text-center" placeholder="Number" value="INV0001"></p>
-                            <p><input type="date" class="rounded-2 border border-2 text-center" id="dateInput"></p>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col">
-                            <hr>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col">
-                            <p><b>Received From:</b></p>
-                            <p><input type="text" class="rounded-2 border border-2" placeholder="Recipient Name "></p>
-                            <p><input type="number" class="rounded-2 border border-2" placeholder="Recipient number "></p>
-
-                        </div>
-                        <div class="col">
-                            <p><b>Amount Received:</b></p>
-                            <p><input type="number" class="rounded-2 border border-2" placeholder="Amount"></p>
-
-                        </div>
-                        <div class="col">
-                            <p><b>Payment Mode:</b></p>
-                            <p>
-                                <select class="rounded-2 border border-2" id="paymentMode">
-                                    <option value="Bank Transfer">Bank Transfer</option>
-                                    <option value="cash">Cash</option>
-                                </select>
-                            </p>
-                            <p><input type="number" class="rounded-2 border border-2" placeholder="Journal Number" id="journalNumber"></p>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col">
-                            <hr>
-                        </div>
-                    </div>
-                   <div class="row">
-                        <div class="col">
-                            <div class="table-responsive">
-                                <table class="table table-bordered text-center">
-                                    <thead>
-                                        <tr>
-                                            <td>
-                                                <button id="addRowButton" class="btn btn-primary">+</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                                Description
-                                            </td>
-                                            <td>Rate</td>
-                                            <td>Quantity</td>
-                                            <td>Amount</td>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr class="data-row">
-                                            <td><input type="text" class="rounded-2 border border-2"></td>
-                                            <td><input type="number" class="rounded-2 border border-2 rate-input"></td>
-                                            <td><input type="number" class="rounded-2 border border-2 quantity-input" style="width: 60px;"></td>
-                                            <td><p class="amount-text"></p></td>
-                                        </tr>
-                                        <tr>
-                                            <td colspan="2"></td>
-                                            <td>Total Amount</td>
-                                            <td><p id="totalAmount"></p></td>
-                                        </tr>
-                                        <tr>
-                                            <td colspan="2"></td>
-                                            <td>Total Amount Paid</td>
-                                            <td><p id="totalAmountpaid"></p></td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
-                   </div>
-
-                    <div class="row">
-                        <div class="col" id="sign_id">
-                            Signature:
-                            <span> <button id="openModalButton" type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#signatureModal">Sign here</button></span>
-                            <p>
-                                <img id="signatureImage" src="" class="mt-4"><br>
-                                <button  class="btn btn-secondary" id="clear_button_outside" style="display: none">Clear</button>
-                                <input type="hidden" value="" id="SignImage" name="sign_image">
-                            </p>
-                        </div>
-                    </div>
-                        <!-- Signature Modal -->
-                <div class="modal fade" id="signatureModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                    <div class="modal-dialog" role="document">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h5 class="modal-title">Signature</h5>
-                                <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
-                                    <span aria-hidden="true">&times;</span>
-                                </button>
-                            </div>
-                            <div class="modal-body text-center">
-                                <canvas id="signatureCanvas" width="400" height="200" class="border border-2"></canvas>
-                                <button id="clearButton" class="btn btn-secondary">Clear</button>
-                                <button id="saveButton" class="btn btn-primary">Save</button>
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                    <div class="row mt-5">
-                        <div class="col-md-2 text-center">
-                            OR
-                        </div>
-                    </div>
-                    <div class="row mt-5">
-                        <div class="col">
-                           <label for="signature_upload" class="signature_upload_label text-center rounded-3"><img src="https://cdn2.iconfinder.com/data/icons/instagram-ui/48/jee-80-512.png" width="100" height="100" class="mt-4"><br>Upload Signature</label>
-                            <input type="file" id="signature_upload" style="visibility: hidden;">
-                            <img id="uploaded_signature" src="" alt="Uploaded signature" class="mt-4">
-                        </div>
-
-                    </div>
-
+      <div class="col paper p-5 shadow">
+        <div class="row">
+          <div class="col">
+            <label
+              for="logo_upload"
+              class="logo_upload_label text-center rounded-3"
+              ><img
+                src="https://cdn2.iconfinder.com/data/icons/instagram-ui/48/jee-80-512.png"
+                width="100"
+                height="100"
+                class="mt-4"
+              /><br />Upload Logo</label
+            >
+            <input type="file" id="logo_upload" name="logo_image" />
+            <img id="uploaded_logo" src="" alt="Uploaded Logo" class="mt-4" />
+          </div>
+          <div class="col">
+            <p>
+              <input
+                type="text"
+                class="rounded-2 border border-2"
+                placeholder="Company Name"
+                name="company_name"
+              />
+            </p>
+            <p>
+              <input
+                type="email"
+                class="rounded-2 border border-2"
+                placeholder="Email"
+                name="email"
+              />
+            </p>
+            <p>
+              <input
+                type="number"
+                class="rounded-2 border border-2"
+                placeholder="Phone Number"
+                name="phone_no"
+              />
+            </p>
+            <p>
+              <input
+                type="text"
+                class="rounded-2 border border-2"
+                placeholder="Address"
+                name="address"
+              />
+            </p>
+            <p>
+              <input
+                type="text"
+                class="rounded-2 border border-2"
+                placeholder="City, State"
+                name="city"
+              />
+            </p>
+          </div>
+          <div class="col">
+            <p>
+              <input
+                type="text"
+                class="rounded-2 border border-2 text-center"
+                value="Receipt"
+                name=""
+              />
+            </p>
+            <p>
+              <input
+                type="text"
+                class="rounded-2 border border-2 text-center"
+                placeholder="Number"
+                value="INV0001"
+                name=""
+              />
+            </p>
+            <p>
+              <input
+                type="date"
+                class="rounded-2 border border-2 text-center"
+                id="dateInput"
+                name=""
+              />
+            </p>
+          </div>
         </div>
-
-
-    </div>
-        <div class="row mt-4 mb-5">
-            <div class="col">
-                 <button type="button" class="btn btn-primary">Generate Receipt</button>
+        <div class="row">
+          <div class="col">
+            <hr />
+          </div>
+        </div>
+        <div class="row">
+          <div class="col">
+            <p><b>Received From:</b></p>
+            <p>
+              <input
+                type="text"
+                class="rounded-2 border border-2"
+                placeholder="Recipient Name"
+                name="recipient_name"
+              />
+            </p>
+            <p>
+              <input
+                type="number"
+                class="rounded-2 border border-2"
+                placeholder="Recipient Phone No"
+                name="recipient_phone"
+              />
+            </p>
+          </div>
+          <div class="col">
+            <p><b>Amount Received:</b></p>
+            <p>
+              <input
+                type="number"
+                class="rounded-2 border border-2"
+                placeholder="Amount"
+                name="amount"
+              />
+            </p>
+          </div>
+          <div class="col">
+            <p><b>Payment Mode:</b></p>
+            <p>
+              <select
+                class="rounded-2 border border-2"
+                id="paymentMode"
+                name=""
+              >
+                <option value="Bank Transfer">Bank Transfer</option>
+                <option value="cash">Cash</option>
+              </select>
+            </p>
+            <p>
+              <input
+                type="number"
+                class="rounded-2 border border-2"
+                placeholder="Journal Number"
+                id="journalNumber"
+                name="Journal_no"
+              />
+            </p>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col">
+            <hr />
+          </div>
+        </div>
+        <div class="row">
+          <div class="col">
+            <div class="table-responsive">
+              <table class="table table-bordered text-center">
+                <thead>
+                  <tr>
+                    <td>
+                      <button id="addRowButton" class="btn btn-primary">
+                        +</button
+                      >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Description
+                    </td>
+                    <td>Rate</td>
+                    <td>Quantity</td>
+                    <td>Amount</td>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr class="data-row">
+                    <td>
+                      <input
+                        type="text"
+                        class="rounded-2 border border-2"
+                        name="description"
+                      />
+                    </td>
+                    <td>
+                      <input
+                        type="number"
+                        class="rounded-2 border border-2 rate-input"
+                        name="rate"
+                        id="rate"
+                      />
+                    </td>
+                    <td>
+                      <input
+                        type="number"
+                        class="rounded-2 border border-2 quantity-input"
+                        style="width: 60px"
+                        name="quantity"
+                        id="quantity"
+                      />
+                    </td>
+                    <td>
+                      <input
+                        type="number"
+                        class="rounded-2 border border-2"
+                        style="width: 60px"
+                        name="cost_amount"
+                        id="cost_amount"
+                      />
+                    </td>
+                  </tr>
+                  <tr>
+                    <td colspan="2"></td>
+                    <td>Total Amount</td>
+                    <td><p id="totalAmount"></p></td>
+                  </tr>
+                  <tr>
+                    <td colspan="2"></td>
+                    <td>Total Amount Paid</td>
+                    <td><p id="totalAmountpaid"></p></td>
+                  </tr>
+                </tbody>
+              </table>
             </div>
+          </div>
         </div>
-    </form>
 
+        <div class="row">
+          <div class="col" id="sign_id">
+            Signature:
+            <span>
+              <button
+                id="openModalButton"
+                type="button"
+                class="btn btn-primary"
+                data-bs-toggle="modal"
+                data-bs-target="#signatureModal"
+              >
+                Sign here
+              </button></span
+            >
+            <p>
+              <img id="signatureImage" src="" class="mt-4" /><br />
+              <button
+                class="btn btn-secondary"
+                id="clear_button_outside"
+                style="display: none"
+              >
+                Clear
+              </button>
+              <input
+                type="hidden"
+                value=""
+                id="SignImage"
+                name="sign_image"
+                name=""
+              />
+            </p>
+          </div>
+        </div>
+        <!-- Signature Modal -->
+        <div
+          class="modal fade"
+          id="signatureModal"
+          tabindex="-1"
+          role="dialog"
+          aria-labelledby="exampleModalLabel"
+          aria-hidden="true"
+        >
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title">Signature</h5>
+                <button
+                  type="button"
+                  class="close"
+                  data-bs-dismiss="modal"
+                  aria-label="Close"
+                >
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body text-center">
+                <canvas
+                  id="signatureCanvas"
+                  width="400"
+                  height="200"
+                  class="border border-2"
+                ></canvas>
+                <button id="clearButton" class="btn btn-secondary">
+                  Clear
+                </button>
+                <button id="saveButton" class="btn btn-primary">Save</button>
+              </div>
+              <div class="modal-footer">
+                <button
+                  type="button"
+                  class="btn btn-secondary"
+                  data-bs-dismiss="modal"
+                >
+                  Close
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row mt-5">
+          <div class="col-md-2 text-center">OR</div>
+        </div>
+        <div class="row mt-5">
+          <div class="col">
+            <label
+              for="signature_upload"
+              class="signature_upload_label text-center rounded-3"
+              ><img
+                src="https://cdn2.iconfinder.com/data/icons/instagram-ui/48/jee-80-512.png"
+                width="100"
+                height="100"
+                class="mt-4"
+              /><br />Upload Signature</label
+            >
+            <input
+              type="file"
+              id="signature_upload"
+              style="visibility: hidden"
+              name=""
+            />
+            <img
+              id="uploaded_signature"
+              src=""
+              alt="Uploaded signature"
+              class="mt-4"
+            />
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row mt-4 mb-5">
+      <div class="col">
+        <button type="button" class="btn btn-primary">Generate Receipt</button>
+      </div>
+    </div>
+  </form>
 </div>
 {% endblock %}
