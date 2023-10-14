@@ -103,5 +103,19 @@ $(document).ready(function() {
                 reader.readAsDataURL(file);
             }
         });
+
+        $("#signature_upload").change(function() {
+            const file = this.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    $("#uploaded_signature").attr("src", e.target.result);
+                    $("#uploaded_signature").show();
+                    $("#uploaded_signature").css("display", "inline-block"); // Remove 'display: none;'
+                    $(".signature_upload_label").hide();
+                };
+                reader.readAsDataURL(file);
+            }
+        });
     // END IMAGE UPLOAD
 });

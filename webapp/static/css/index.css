@@ -1,0 +1,23 @@
+body {
+ background-color: #f3f4f6;
+}
+
+.paper{
+ background-color: #ffffff;
+}
+
+#logo_upload{
+    visibility: hidden;
+}
+
+.logo_upload_label, .signature_upload_label{
+    background-color: #f3f4f6;
+    min-width: 300px;
+    min-height: 200px;
+}
+
+#uploaded_logo, #uploaded_signature{
+    display: none;
+    min-width: 300px;
+    height: 200px;
+}

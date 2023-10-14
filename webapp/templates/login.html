@@ -1,0 +1,29 @@
+{% extends "shared/base.html"%}
+{% load socialaccount %}
+{% block body %}
+
+<div class="container">
+    <div class="row justify-content-center align-items-center vh-100">
+        <div class="col-12 col-md-5 text-center">
+            <div class="col-md-12 border border-2 border-dark p-5 rounded-1">
+                <a href="{% provider_login_url 'google'%}?next=/" target="_parent" class="text-decoration-none text-dark">
+                        <div class="border border-2 border-dark rounded-3 p-2" id="google_card">
+                           <i class="fa-brands fa-google fa-2x" style="color: #f0473c"></i>
+                            &nbsp;&nbsp;&nbsp;&nbsp;
+                            <span style="font-size: 20px">Continue with Google</span>
+                        </div>
+                </a>
+                        <div class="border border-2 border-dark rounded-3 p-2 mt-3" id="facebook_card">
+                           <i class="fa-brands fa-facebook fa-2x" style="color: #1f7bf2"></i>
+                            &nbsp;&nbsp;&nbsp;&nbsp;
+                            <span style="font-size: 20px">Continue with FaceBook</span>
+                        </div>
+
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+{% endblock %}
