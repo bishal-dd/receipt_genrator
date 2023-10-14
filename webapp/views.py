@@ -30,11 +30,9 @@ def save_data(request):
         manual_signature_image = request.POST.get('manual_signature_image')
 
         profile = Profile(company_name=company_name, logo_image=image,
-                          phone_no=phone_no, address=address, email=email, city=city)
+                          phone_no=phone_no, address=address, email=email, city=city, signature_image=signature_image, manual_signature_image=manual_signature_image)
 
         profile.save()
-
-        print("it worked")
 
         # RECEIPT
         recipient_name = request.POST.get('')
@@ -51,3 +49,5 @@ def save_data(request):
 
         # VERSION
         # user =
+
+        return render(request, 'index.html')
