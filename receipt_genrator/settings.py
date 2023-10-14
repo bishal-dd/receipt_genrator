@@ -25,6 +25,9 @@ SECRET_KEY = 'django-insecure-&%k5*d1e42qpmt^7uw$l0)chefs@8dt)(63rs#_9)t@6+kpo3s
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
+APPEND_SLASH = False
+
+
 ALLOWED_HOSTS = []
 
 
@@ -62,7 +65,7 @@ SOCIALACCOUNT_PROVIDERS = {
     }
 }
 
-SOCIALACCOUNT_LOGIN_ON_GET=True
+SOCIALACCOUNT_LOGIN_ON_GET = True
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -165,4 +168,3 @@ AUTHENTICATION_BACKENDS = {
 
 LOGIN_REDIRECT_URL = "/"
 LOGOUT_REDIRECT_URL = "/"
-

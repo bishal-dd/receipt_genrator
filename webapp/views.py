@@ -20,13 +20,21 @@ def save_data(request):
     if request.method == 'POST':
 
         # PROFILE
-        company_name = request.POST.get('')
-        image = request.FILES['image']
-        phone_no = request.POST.get('')
-        address = request.POST.get('')
-        email = request.POST.get('')
-        city = request.POST.get('')
-        signature_image = request.POST.get('')
+        company_name = request.POST.get('company_name')
+        image = request.FILES['logo_image']
+        phone_no = request.POST.get('phone_no')
+        address = request.POST.get('address')
+        email = request.POST.get('email')
+        city = request.POST.get('city')
+        signature_image = request.FILES['signature_image']
+        manual_signature_image = request.POST.get('manual_signature_image')
+
+        profile = Profile(company_name=company_name, logo_image=image,
+                          phone_no=phone_no, address=address, email=email, city=city)
+
+        profile.save()
+
+        print("it worked")
 
         # RECEIPT
         recipient_name = request.POST.get('')

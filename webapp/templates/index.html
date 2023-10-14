@@ -1,6 +1,11 @@
 {% extends "shared/base.html"%} {% block body%}
 <div class="container">
-  <form>
+  <form
+    method="post"
+    action='{% url "webapp:save_data"%}'
+    enctype="multipart/form-data"
+  >
+    {% csrf_token %}
     <div class="row mt-5">
       <div class="col paper p-5 shadow">
         <div class="row">
@@ -25,6 +30,7 @@
                 class="rounded-2 border border-2"
                 placeholder="Company Name"
                 name="company_name"
+                required
               />
             </p>
             <p>
@@ -41,6 +47,7 @@
                 class="rounded-2 border border-2"
                 placeholder="Phone Number"
                 name="phone_no"
+                required
               />
             </p>
             <p>
@@ -248,7 +255,7 @@
                 value=""
                 id="SignImage"
                 name="sign_image"
-                name=""
+                name="manual_signature_image"
               />
             </p>
           </div>
@@ -318,7 +325,7 @@
               type="file"
               id="signature_upload"
               style="visibility: hidden"
-              name=""
+              name="signature_image"
             />
             <img
               id="uploaded_signature"
@@ -332,7 +339,7 @@
     </div>
     <div class="row mt-4 mb-5">
       <div class="col">
-        <button type="button" class="btn btn-primary">Generate Receipt</button>
+        <button type="submit" class="btn btn-primary">Generate Receipt</button>
       </div>
     </div>
   </form>
