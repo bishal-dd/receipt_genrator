@@ -1,5 +1,85 @@
 $(document).ready(function() {
 
+        // START CANVAS
+        const canvas = $("#signatureCanvas")[0];
+        const context = canvas.getContext("2d");
+        let drawing = false;
+
+
+
+        $("#signatureCanvas").mousedown(function() {
+            drawing = true;
+        });
+
+        $("#signatureCanvas").mousemove(function(event) {
+            if (!drawing) return;
+
+            context.lineWidth = 2;
+            context.strokeStyle = "black";
+            context.lineCap = "round";
+
+            context.lineTo(event.clientX - canvas.getBoundingClientRect().left, event.clientY - canvas.getBoundingClientRect().top);
+            context.stroke();
+            context.beginPath();
+            context.moveTo(event.clientX - canvas.getBoundingClientRect().left, event.clientY - canvas.getBoundingClientRect().top);
+        });
+
+        $("#signatureCanvas").mouseup(function() {
+            drawing = false;
+            context.beginPath();
+        });
+
+        $("#clearButton").click(function(e) {
+            e.preventDefault();
+            e.stopPropagation(); // Stop event propagation to prevent further default behavior
+            context.clearRect(0, 0, canvas.width, canvas.height);
+        });
+
+        $("#clear_button_outside").click(function(e) {
+            e.preventDefault();
+            $("#signatureImage").attr("src", ""); // Set the src attribute to an empty string
+            $("#clear_button_outside").hide(); // Hide the element
+        });
+
+                 // Function to check if the canvas is blank
+        function isCanvasBlank(canvas) {
+            const context = canvas.getContext("2d");
+            const pixelData = context.getImageData(0, 0, canvas.width, canvas.height).data;
+            for (let i = 0; i < pixelData.length; i++) {
+                if (pixelData[i] !== 0) {
+                    return false; // The canvas is not blank
+                }
+            }
+            return true; // The canvas is blank
+        }
+
+
+             // Function to save the signature as an image
+            $("#saveButton").on("click", function(e) {
+                e.preventDefault();
+                    if (isCanvasBlank(canvas)) {
+                            $("#signatureImage").attr("src", ""); // Set the src attribute to an empty string
+                    }
+
+                    else
+                    {
+                         const canvas = document.getElementById("signatureCanvas");
+                        const signatureImage = canvas.toDataURL("image/png");
+                         // Update the src attribute of the existing signatureImage element
+                         $("#signatureImage").css("display", "inline-block"); // Remove 'display: none;'
+                        $("#signatureImage").attr("src", signatureImage);
+                        $("#SignImage").attr("value", signatureImage);
+                        $("#clear_button_outside").css("display", "inline-block"); // Remove 'display: none;'
+                        $("#closeButton").click(); // Trigger a click on the close button
+                        $("#signatureModal").modal('hide'); // Close the modal
+
+                    }
+
+            });
+
+
+    // END CANVAS
+
     // START SET CURRENT DATE
         // Get the current date in the "YYYY-MM-DD" format
         function getCurrentDate() {
@@ -90,7 +170,7 @@ $(document).ready(function() {
     // END ADD COL
 
     // START IMAGE UPLOAD
-            $("#logo_upload").change(function() {
+        $("#logo_upload").change(function() {
             const file = this.files[0];
             if (file) {
                 const reader = new FileReader();
@@ -118,4 +198,6 @@ $(document).ready(function() {
             }
         });
     // END IMAGE UPLOAD
+
+
 });

@@ -9,7 +9,7 @@ class Profile(models.Model):
     address = models.CharField(max_length=100, null=True)
     email = models.CharField(max_length=100, null=True)
     city = models.CharField(max_length=100, null=True)
-    signature_image = models.ImageField(upload_to='images/')
+    signature_image = models.CharField(max_length=20000, null=True)
     slug = models.SlugField(null=False)
 
 
@@ -18,7 +18,7 @@ class Receipt(models.Model):
     recipient_phone = models.IntegerField(null=False)
     amount = models.FloatField(null=False)
     Journal_no = models.IntegerField(null=True)
-    user = models.ForeignKey(Foreign_User, on_delete=models.CASCADE)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
 
 
 class Service(models.Model):
@@ -29,3 +29,7 @@ class Service(models.Model):
     receipt = models.ForeignKey(Receipt, on_delete=models.CASCADE)
 
 
+class Version(models.Model):
+    mode = models.CharField(max_length=10, choices=[('trial', 'trial'), ('paid', 'paid')], default='trial')
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    use_count = models.IntegerField(null=False, default=0)

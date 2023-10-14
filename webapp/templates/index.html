@@ -97,11 +97,37 @@
                    </div>
 
                     <div class="row">
-                        <div class="col">
+                        <div class="col" id="sign_id">
                             Signature:
+                            <span> <button id="openModalButton" type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#signatureModal">Sign here</button></span>
+                            <p>
+                                <img id="signatureImage" src="" class="mt-4"><br>
+                                <button  class="btn btn-secondary" id="clear_button_outside" style="display: none">Clear</button>
+                                <input type="hidden" value="" id="SignImage" name="sign_image">
+                            </p>
                         </div>
-
                     </div>
+                        <!-- Signature Modal -->
+                <div class="modal fade" id="signatureModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title">Signature</h5>
+                                <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body text-center">
+                                <canvas id="signatureCanvas" width="400" height="200" class="border border-2"></canvas>
+                                <button id="clearButton" class="btn btn-secondary">Clear</button>
+                                <button id="saveButton" class="btn btn-primary">Save</button>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
                     <div class="row mt-5">
                         <div class="col-md-2 text-center">
                             OR
