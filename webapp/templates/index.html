@@ -21,7 +21,12 @@
               /><br />Upload Logo</label
             >
             <input type="file" id="logo_upload" name="logo_image" />
-            <img id="uploaded_logo" src="" alt="Uploaded Logo" class="mt-4" />
+            <img
+              id="uploaded_logo"
+              src="{{user_profile.logo_image.url}}"
+              alt="Uploaded Logo"
+              class="mt-4"
+            />
           </div>
           <div class="col">
             <p>
@@ -30,6 +35,7 @@
                 class="rounded-2 border border-2"
                 placeholder="Company Name"
                 name="company_name"
+                value="{{ user_profile.company_name}}"
                 required
               />
             </p>
@@ -38,6 +44,7 @@
                 type="email"
                 class="rounded-2 border border-2"
                 placeholder="Email"
+                value="{{ user_profile.email}}"
                 name="email"
               />
             </p>
@@ -47,6 +54,7 @@
                 class="rounded-2 border border-2"
                 placeholder="Phone Number"
                 name="phone_no"
+                value="{{ user_profile.phone_no}}"
                 required
               />
             </p>
@@ -55,6 +63,7 @@
                 type="text"
                 class="rounded-2 border border-2"
                 placeholder="Address"
+                value="{{ user_profile.address}}"
                 name="address"
               />
             </p>
@@ -63,6 +72,7 @@
                 type="text"
                 class="rounded-2 border border-2"
                 placeholder="City, State"
+                value="{{ user_profile.city}}"
                 name="city"
               />
             </p>
@@ -254,7 +264,6 @@
                 type="hidden"
                 value=""
                 id="SignImage"
-                name="sign_image"
                 name="manual_signature_image"
               />
             </p>
