@@ -9,7 +9,30 @@
     <div class="row mt-5">
       <div class="col paper p-5 shadow">
         <div class="row">
-          <div class="col">
+          <div class="col text-center">
+            {% if user_profile.logo_image.url %}
+
+            <img
+              src="{{user_profile.logo_image.url}}"
+              alt="Uploaded Logo"
+              id="edited_logo"
+              class="mt-4"
+              width="300"
+              height="200"
+            />
+            <label
+              for="logo_edit"
+              class="logo_edit_label text-center rounded-3 border border-2"
+              >Edit logo</label
+            >
+            <input
+              type="file"
+              id="logo_edit"
+              name="logo_image"
+              value="{{user_profile.logo_image}}"
+            />
+
+            {% else %}
             <label
               for="logo_upload"
               class="logo_upload_label text-center rounded-3"
@@ -27,6 +50,8 @@
               alt="Uploaded Logo"
               class="mt-4"
             />
+
+            {% endif%}
           </div>
           <div class="col">
             <p>
@@ -252,7 +277,32 @@
               </button></span
             >
             <p>
-              <img id="signatureImage" src="" class="mt-4" /><br />
+              {% if user_profile.manual_signature_image %}
+              <img
+                id="signatureImageEdit"
+                src="{{ user_profile.manual_signature_image}}"
+                class="mt-4"
+              /><br />
+              <button
+                class="btn btn-secondary"
+                id="clear_button_outside"
+                style="display: block"
+              >
+                Clear
+              </button>
+              <input
+                type="hidden"
+                value="{{ user_profile.manual_signature_image}}"
+                id="SignImage"
+                name="manual_signature_image"
+              />
+
+              {% else%}
+              <img
+                id="signatureImage"
+                src="{{ user_profile.manual_signature_image}}"
+                class="mt-4"
+              /><br />
               <button
                 class="btn btn-secondary"
                 id="clear_button_outside"
@@ -266,6 +316,8 @@
                 id="SignImage"
                 name="manual_signature_image"
               />
+
+              {% endif %}
             </p>
           </div>
         </div>
@@ -320,6 +372,29 @@
         </div>
         <div class="row mt-5">
           <div class="col">
+            {% if user_profile.signature_image %}
+
+            <img
+              id="edited_signature"
+              src="{{ user_profile.signature_image.url}}"
+              alt="Uploaded signature"
+              class="mt-4"
+              width="200"
+              height="100"
+            /><br />
+            <label
+              for="signature_edit"
+              class="signature_edit_label text-center rounded-3 border border-1"
+              >Edit Signature</label
+            >
+            <input
+              type="file"
+              id="signature_edit"
+              style="visibility: hidden"
+              name="signature_image"
+            />
+            {% else%}
+
             <label
               for="signature_upload"
               class="signature_upload_label text-center rounded-3"
@@ -342,6 +417,8 @@
               alt="Uploaded signature"
               class="mt-4"
             />
+
+            {% endif %}
           </div>
         </div>
       </div>

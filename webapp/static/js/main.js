@@ -41,7 +41,11 @@ $(document).ready(function () {
   $("#clear_button_outside").click(function (e) {
     e.preventDefault();
     $("#signatureImage").attr("src", ""); // Set the src attribute to an empty string
+    $("#signatureImageEdit").attr("src", ""); // Set the src attribute to an empty string
+    $("#SignImage").val(""); // Set the src attribute to an empty string
     $("#clear_button_outside").hide(); // Hide the element
+    context.clearRect(0, 0, canvas.width, canvas.height);
+    $(".signature_upload_label").show();
   });
 
   // Function to check if the canvas is blank
@@ -72,10 +76,12 @@ $(document).ready(function () {
       // Update the src attribute of the existing signatureImage element
       $("#signatureImage").css("display", "inline-block"); // Remove 'display: none;'
       $("#signatureImage").attr("src", signatureImage);
+      $("#signatureImageEdit").attr("src", signatureImage);
       $("#SignImage").attr("value", signatureImage);
       $("#clear_button_outside").css("display", "inline-block"); // Remove 'display: none;'
       $("#closeButton").click(); // Trigger a click on the close button
       $("#signatureModal").modal("hide"); // Close the modal
+      $(".signature_upload_label").hide(); // Hide the label
     }
   });
 
@@ -166,13 +172,15 @@ $(document).ready(function () {
   // END ADD COL
 
   // START IMAGE UPLOAD
-  $("#logo_upload").change(function () {
+  $("#logo_upload, #logo_edit").change(function () {
     const file = this.files[0];
     if (file) {
       const reader = new FileReader();
       reader.onload = function (e) {
         $("#uploaded_logo").attr("src", e.target.result);
         $("#uploaded_logo").show();
+        $("#edited_logo").attr("src", e.target.result);
+        $("#logo_edit").val(e.target.result);
         $("#uploaded_logo").css("display", "inline-block"); // Remove 'display: none;'
         $(".logo_upload_label").hide();
       };
@@ -180,25 +188,14 @@ $(document).ready(function () {
     }
   });
 
-  $("#logo_edit").change(function () {
-    const file = this.files[0];
-    if (file) {
-      const reader = new FileReader();
-      reader.onload = function (e) {
-        $("#edited_logo").attr("src", e.target.result);
-        $("#edited_logo").show();
-        $("#logo_edit").val(e.target.result);
-      };
-      reader.readAsDataURL(file);
-    }
-  });
-
-  $("#signature_upload").change(function () {
+  $("#signature_upload, #signature_edit").change(function () {
     const file = this.files[0];
     if (file) {
       const reader = new FileReader();
       reader.onload = function (e) {
         $("#uploaded_signature").attr("src", e.target.result);
+        $("#edited_signature").attr("src", e.target.result);
+        $("#signature_edit").val(e.target.result);
         $("#uploaded_signature").show();
         $("#uploaded_signature").css("display", "inline-block"); // Remove 'display: none;'
         $(".signature_upload_label").hide();
