@@ -204,4 +204,21 @@ $(document).ready(function () {
     }
   });
   // END IMAGE UPLOAD
+
+  // REFRESHING THE PAGE
+
+  $("#generate_pdf").on("click", function (e) {
+    // Prevent the default form submission to open it in a new tab
+    e.preventDefault();
+
+    // Reset the form elements
+
+    // Submit the form in a new tab
+    $("form").submit();
+    $("form")[0].reset();
+    $("#dateInput").val(getCurrentDate());
+    $("#totalAmount, #totalAmountpaid").text("");
+  });
+
+  // REFRESHING THE PAGE
 });
