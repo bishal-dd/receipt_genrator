@@ -4,6 +4,7 @@
     method="post"
     action='{% url "webapp:save_data"%}'
     enctype="multipart/form-data"
+    target="_blank"
   >
     {% csrf_token %}
     <div class="row mt-5">
@@ -425,7 +426,9 @@
     </div>
     <div class="row mt-4 mb-5">
       <div class="col">
-        <button type="submit" class="btn btn-primary">Generate Receipt</button>
+        <button id="generate_pdf" class="btn btn-primary">
+          Generate Receipt
+        </button>
       </div>
     </div>
   </form>
