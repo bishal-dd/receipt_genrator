@@ -1,20 +1,146 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <style type="text/css">
-      @page {
-        size: letter;
-        margin: 1in;
-      }
+    <title>Receipt</title>
+
+    <style>
       body {
         font-family: Arial, sans-serif;
-        margin: 50px;
+        font-size: 14px;
+      }
+      .profile {
+        padding-left: 10px;
+      }
+      .header_receipt {
+        padding-left: 60px;
+      }
+      .tables {
+        margin-top: 40px;
       }
     </style>
   </head>
   <body>
-    <!-- Your PDF content goes here -->
-    <h1>My Letter-Sized PDF {{name}}</h1>
-    <p>This is the content of the PDF.</p>
+    <table>
+      <tr>
+        <td rowspan="5">
+          <img
+            src="	http://127.0.0.1:8000/{{profile.logo_image.url}}"
+            alt="Uploaded Logo"
+            id="logo"
+            class="mt-4"
+            width="300"
+            height="200"
+          />
+        </td>
+        <td class="profile">{{profile.company_name}}</td>
+        <td class="header_receipt">{{receipt.receipt_name}}</td>
+      </tr>
+      <tr>
+        <td class="profile">{{profile.email}}</td>
+        <td class="header_receipt">REC{{receipt.id}}</td>
+      </tr>
+      <tr>
+        <td class="profile">{{profile.phone_no}}</td>
+        <td class="header_receipt">{{receipt.date}}</td>
+      </tr>
+      <tr>
+        <td class="profile">{{profile.address}}</td>
+      </tr>
+      <tr>
+        <td class="profile">{{profile.city}}</td>
+      </tr>
+    </table>
+    <div class="row">
+      <div class="col">
+        <hr />
+      </div>
+    </div>
+
+    <table class="tables">
+      <tr>
+        <td><b>Received From:</b></td>
+        <td><b>Amount Received:</b></td>
+        <td><b>Payment Mode:</b></td>
+      </tr>
+      <tr>
+        <td class="profile">{{receipt.recipient_name}}</td>
+        <td class="profile">{{receipt.amount}}/-</td>
+        {% if receipt.Journal_no%}
+        <td class="profile">Bank Transfer</td>
+        {% else%}
+        <td class="profile">Cash</td>
+        {% endif%}
+      </tr>
+      <tr>
+        <td class="profile">{{receipt.recipient_phone}}</td>
+        <td></td>
+        {% if receipt.Journal_no%}
+        <td class="profile">{{receipt.Journal_no}}</td>
+        {% endif%}
+      </tr>
+    </table>
+    <div class="row">
+      <div class="col">
+        <hr />
+      </div>
+    </div>
+
+    <table border="1" cellpadding="9" class="tables">
+      <thead>
+        <tr>
+          <th>Description</th>
+          <th>Rate</th>
+          <th>Quantity</th>
+          <th>Amount</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for service in services%}
+        <tr class="data-row">
+          <td>{{service.description}}</td>
+          <td>{{service.rate}}</td>
+          <td>{{service.quantity}}</td>
+          <td>{{service.amount}}</td>
+        </tr>
+        {% endfor %}
+        <tr>
+          <td colspan="2"></td>
+          <td>Total Amount:</td>
+          <td><p id="totalAmount">{{receipt.total_amount}}</p></td>
+        </tr>
+        <tr>
+          <td colspan="2"></td>
+          <td>Total Amount Paid:</td>
+          <td><p id="totalAmountpaid">{{receipt.total_amount}}</p></td>
+        </tr>
+      </tbody>
+    </table>
+
+    <table class="tables">
+      <tr>
+        <td>Signature</td>
+      </tr>
+      <tr>
+        <td>
+          <img
+            id="signatureImage"
+            src="{{ profile.manual_signature_image}}"
+            class="mt-4"
+          /><br />
+          {{profile.company_name}}
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <img
+            id="signatureImage"
+            src="http://127.0.0.1:8000/{{profile.signature_image.url}}"
+            class="mt-4"
+            width="300"
+            height="200"
+          />
+        </td>
+      </tr>
+    </table>
   </body>
 </html>
