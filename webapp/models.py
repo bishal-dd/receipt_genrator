@@ -1,8 +1,23 @@
 from django.db import models
 from django.contrib.auth.models import User
+from django.utils import timezone
 
 
-class Profile(models.Model):
+class BaseModel(models.Model):
+    created_at = models.DateTimeField(default=timezone.now, editable=False)
+    updated_at = models.DateTimeField(default=timezone.now)
+
+    class Meta:
+        abstract = True
+
+    def save(self, *args, **kwargs):
+        self.updated_at = timezone.now()
+        if not self.created_at:
+            self.created_at = timezone.now()
+        super(BaseModel, self).save(*args, **kwargs)
+
+
+class Profile(BaseModel):
     company_name = models.CharField(max_length=100, null=False)
     logo_image = models.ImageField(upload_to='images/')
     phone_no = models.IntegerField(null=False)
@@ -16,15 +31,18 @@ class Profile(models.Model):
     slug = models.SlugField(null=False)
 
 
-class Receipt(models.Model):
+class Receipt(BaseModel):
+    receipt_name = models.CharField(max_length=100, null=False)
     recipient_name = models.CharField(max_length=100, null=False)
     recipient_phone = models.IntegerField(null=False)
     amount = models.FloatField(null=False)
-    Journal_no = models.IntegerField(null=True)
+    Journal_no = models.IntegerField(null=True, blank=True)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
+    date = models.DateField(null=False)
+    total_amount = models.FloatField(null=False, default=0)
 
 
-class Service(models.Model):
+class Service(BaseModel):
     description = models.CharField(max_length=5000, null=False)
     rate = models.FloatField(null=False)
     quantity = models.IntegerField(null=False)
@@ -32,7 +50,7 @@ class Service(models.Model):
     receipt = models.ForeignKey(Receipt, on_delete=models.CASCADE)
 
 
-class Version(models.Model):
+class Version(BaseModel):
     mode = models.CharField(max_length=10, choices=[(
         'trial', 'trial'), ('paid', 'paid')], default='trial')
     user = models.OneToOneField(User, on_delete=models.CASCADE)

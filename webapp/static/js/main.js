@@ -42,7 +42,7 @@ $(document).ready(function () {
     e.preventDefault();
     $("#signatureImage").attr("src", ""); // Set the src attribute to an empty string
     $("#signatureImageEdit").attr("src", ""); // Set the src attribute to an empty string
-    $("#SignImage").val(""); // Set the src attribute to an empty string
+    $("#SignImage").val("");
     $("#clear_button_outside").hide(); // Hide the element
     context.clearRect(0, 0, canvas.width, canvas.height);
     $(".signature_upload_label").show();
@@ -167,6 +167,7 @@ $(document).ready(function () {
 
     // Update the Total Amount cell
     $("#totalAmount, #totalAmountpaid").text("Nu. " + totalAmount.toFixed(2));
+    $("#totalamount").val(totalAmount);
   });
 
   // END ADD COL

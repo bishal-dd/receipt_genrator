@@ -43,11 +43,15 @@ class save_receipts():
 
         profile.save()
 
+        return profile
+
     def save_service(request, receipt):
         descriptions = request.POST.getlist('description')
         rates = request.POST.getlist('rate')
         quantities = request.POST.getlist('quantity')
         cost_amounts = request.POST.getlist('cost_amount')
+
+        services = []  # Create an empty list to store the saved services
 
         for description, rate, quantity, cost_amount in zip(descriptions, rates, quantities, cost_amounts):
             if description:  # Check if the field is not empty
@@ -59,13 +63,19 @@ class save_receipts():
                     receipt=receipt  # You can associate these services with the same receipt
                 )
                 service.save()
+                # Append the saved service to the list
+                services.append(service)
+        return services
 
     def save_receipt(request, user_id):
         # RECEIPT
         recipient_name = request.POST.get('recipient_name')
+        receipt_name = request.POST.get('receipt_name')
         recipient_phone = request.POST.get('recipient_phone')
         amount = request.POST.get('amount')
         Journal_no = request.POST.get('Journal_no')
+        date = request.POST.get('date')
+        total_amount = request.POST.get('total_amount')
         user = user_id
 
         receipt = Receipt(
@@ -73,11 +83,17 @@ class save_receipts():
             recipient_phone=recipient_phone,
             amount=amount,
             Journal_no=Journal_no,
-            user=user
+            date=date,
+            receipt_name=receipt_name,
+            user=user,
+            total_amount=total_amount
         )
 
         receipt.save()
-        save_receipts.save_service(request, receipt)
+        services = save_receipts.save_service(request, receipt)
+
+        # Return a tuple containing the receipt and the associated services
+        return (receipt, services)
 
     def save_version(request, user_id):
         version = Version.objects.filter(user=user_id).first()
@@ -85,3 +101,4 @@ class save_receipts():
         if not version:
             version = Version(user=user_id)
             version.save()
+            return version

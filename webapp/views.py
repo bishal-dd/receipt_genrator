@@ -27,25 +27,30 @@ def logout_view(request):
 def save_data(request):
     if request.method == 'POST':
         user_id = request.user
-        save_receipts.save_profile(request, user_id)
-        save_receipts.save_receipt(request, user_id)
-        save_receipts.save_version(request, user_id)
-        pdf_generation()
+        version = save_receipts.save_version(request, user_id)
 
-        return pdf_generation()  # Return the result of the pdf_generation function
+        profile = save_receipts.save_profile(request, user_id)
+        receipt, services = save_receipts.save_receipt(request, user_id)
+
+        data = {
+            "profile": profile,
+            "receipt": receipt,
+            "services": services,
+        }
+
+        pdf_generation(data)
+
+        # Return the result of the pdf_generation function
+        return pdf_generation(data)
 
 
-def pdf_generation():
-    data = {
-        "name": "Mama",
-        "id": 18,
-        "amount": 333,
-    }
+def pdf_generation(data):
+
     pdf = generate_pdf('receipt_template.html', data)
 
     if pdf:
         response = HttpResponse(pdf, content_type='application/pdf')
-        filename = "Report_for_%s.pdf" % (data['id'])
+        filename = "Receipt.pdf"
         content = f"inline; filename={filename}"
         response['Content-Disposition'] = content
 

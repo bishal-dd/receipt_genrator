@@ -17,7 +17,7 @@
               src="{{user_profile.logo_image.url}}"
               alt="Uploaded Logo"
               id="edited_logo"
-              class="mt-4"
+              class="mt-4 rounded-2"
               width="300"
               height="200"
             />
@@ -109,7 +109,7 @@
                 type="text"
                 class="rounded-2 border border-2 text-center"
                 value="Receipt"
-                name=""
+                name="receipt_name"
               />
             </p>
             <p>
@@ -117,8 +117,9 @@
                 type="text"
                 class="rounded-2 border border-2 text-center"
                 placeholder="Number"
-                value="INV0001"
+                value="REC#"
                 name=""
+                disabled
               />
             </p>
             <p>
@@ -126,7 +127,7 @@
                 type="date"
                 class="rounded-2 border border-2 text-center"
                 id="dateInput"
-                name=""
+                name="date"
               />
             </p>
           </div>
@@ -250,7 +251,14 @@
                   <tr>
                     <td colspan="2"></td>
                     <td>Total Amount</td>
-                    <td><p id="totalAmount"></p></td>
+                    <td>
+                      <p id="totalAmount"></p>
+                      <input
+                        type="hidden"
+                        id="totalamount"
+                        name="total_amount"
+                      />
+                    </td>
                   </tr>
                   <tr>
                     <td colspan="2"></td>
