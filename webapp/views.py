@@ -1,10 +1,12 @@
-from django.shortcuts import render, redirect, HttpResponse
+from django.db.models import Sum
+from django.shortcuts import render, redirect
 from django.contrib.auth import logout
 from .models import Profile, Receipt, Version, Service
 from django.contrib.auth.decorators import login_required
 from .helpers.save_data import save_receipts
-from .helpers.generate_receipt import generate_pdf
-from django.core.paginator import Paginator
+from .pagination.pagination import pagination
+from .helpers.pdf_generation import pdf_generation
+from .filters.year_month_filter import year_month_filter
 
 
 def index(request):
@@ -28,16 +30,15 @@ def logout_view(request):
 def receipts_view(request, id):
     user_receipts = None
     if request.user.is_authenticated:
-        user_receipts = Receipt.objects.filter(user_id=id)
+        user_id = request.user.id
+        year = request.GET.get('year')  # Get the selected year from the request
+        month = request.GET.get('month')  # Get the selected month from the request
+        user_receipts = Receipt.objects.filter(user_id=id).order_by('date')
+        user_receipts = year_month_filter(user_receipts, year, month)
+        total_amount = user_receipts.aggregate(Sum('total_amount'))['total_amount__sum'] or 0
+    user_receipts = pagination(request, user_receipts, 10)
 
-    # Set the number of items per page
-    items_per_page = 10  # You can adjust this to your preferred number of items per page
-
-    paginator = Paginator(user_receipts, items_per_page)
-    page = request.GET.get('page')
-    user_receipts = paginator.get_page(page)
-
-    return render(request, 'view_receipts.html', {'user_receipts': user_receipts})
+    return render(request, 'view_receipts.html', {'user_receipts': user_receipts, 'total_amount': total_amount})
 
 
 @login_required
@@ -75,18 +76,3 @@ def generate_individual_receipt(request, id):
 
     # Return the result of the pdf_generation function
     return pdf_generation(data)
-
-
-def pdf_generation(data):
-
-    pdf = generate_pdf('receipt_template.html', data)
-
-    if pdf:
-        response = HttpResponse(pdf, content_type='application/pdf')
-        filename = "Receipt.pdf"
-        content = f"inline; filename={filename}"
-        response['Content-Disposition'] = content
-
-        return response
-
-    return HttpResponse("Page Not Found")
