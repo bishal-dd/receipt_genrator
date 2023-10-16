@@ -1,6 +1,14 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
   <a class="navbar-brand" href="#">Navbar</a>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+  <button
+    class="navbar-toggler"
+    type="button"
+    data-toggle="collapse"
+    data-target="#navbarNavDropdown"
+    aria-controls="navbarNavDropdown"
+    aria-expanded="false"
+    aria-label="Toggle navigation"
+  >
     <span class="navbar-toggler-icon"></span>
   </button>
   <div class="collapse navbar-collapse" id="navbarNavDropdown">
@@ -11,13 +19,16 @@
       <li class="nav-item">
         <a class="nav-link" href="{% url 'webapp:login' %}">Login</a>
       </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#">Pricing</a>
-      </li>
       {% if user.is_authenticated %}
-        <li class="nav-item">
-          <a class="nav-link" href="#">{{ user.email }}</a>
-        </li>
+      <li class="nav-item">
+        <a class="nav-link" href="{% url 'webapp:view_receipts' id=user.id%}"
+          >View Receipts</a
+        >
+      </li>
+
+      <li class="nav-item">
+        <a class="nav-link" href="#">{{ user.email }}</a>
+      </li>
       <li class="nav-item">
         <a class="nav-link" href="{% url 'webapp:logout' %}">Logout</a>
       </li>

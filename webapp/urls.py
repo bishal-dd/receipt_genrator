@@ -10,7 +10,11 @@ urlpatterns = [
     path('', views.index, name='index'),
     path('login/', views.login, name='login'),
     path('logout', views.logout_view, name='logout'),
-    path('save_data/', views.save_data, name="save_data")
+    path('save_data/', views.save_data, name="save_data"),
+    path('view_receipts/<int:id>/', views.receipts_view, name="view_receipts"),
+    path('generate_individual_receipt/<int:id>/',
+         views.generate_individual_receipt, name='generate_individual_receipt'),
+
 ]
 
 # Add this at the end of your urlpatterns
