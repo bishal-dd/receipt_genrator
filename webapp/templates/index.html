@@ -214,9 +214,9 @@
                 <thead>
                   <tr>
                     <td>
-                      <button id="addRowButton" class="btn btn-primary">
-                        +</button
-                      >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Description
+                      <button id="addRowButton" class="btn" style="background-color:#ff5a28; color:white">
+                        +</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                      Description
                     </td>
                     <td>Rate</td>
                     <td>Quantity</td>
@@ -290,9 +290,10 @@
               <button
                 id="openModalButton"
                 type="button"
-                class="btn btn-primary"
+                class="btn"
                 data-bs-toggle="modal"
                 data-bs-target="#signatureModal"
+                style="background-color:#ff5a28; color:white"
               >
                 Sign here
               </button></span
@@ -305,7 +306,7 @@
                 class="mt-4"
               /><br />
               <button
-                class="btn btn-secondary"
+                class="btn btn-danger"
                 id="clear_button_outside"
                 style="display: block"
               >
@@ -371,15 +372,15 @@
                   height="200"
                   class="border border-2"
                 ></canvas>
-                <button id="clearButton" class="btn btn-secondary">
+                <button id="clearButton" class="btn btn-danger">
                   Clear
                 </button>
-                <button id="saveButton" class="btn btn-primary">Save</button>
+                <button id="saveButton" class="btn" style="background-color:#ff5a28; color:white">Save</button>
               </div>
               <div class="modal-footer">
                 <button
                   type="button"
-                  class="btn btn-secondary"
+                  class="btn btn-danger"
                   data-bs-dismiss="modal"
                 >
                   Close
@@ -446,12 +447,12 @@
     </div>
     <div class="row mt-4 mb-5">
       <div class="col">
-        <button type="submit" id="generate_pdf" class="btn btn-primary">
+        <button type="submit" id="generate_pdf" class="btn btn-success">
           Generate Receipt
         </button>
       </div>
       <div class="col">
-        <button type="button" id="save_data" class="btn btn-primary">
+        <button type="button" id="save_data" class="btn btn-success">
           Save Transition
         </button>
       </div>
