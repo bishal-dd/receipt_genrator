@@ -2,9 +2,10 @@
 <div class="container">
   <form
     method="post"
-    action='{% url "webapp:save_data"%}'
+    action='{% url "webapp:generate_pdf"%}'
     enctype="multipart/form-data"
     target="_blank"
+    id="data_form"
   >
     {% csrf_token %}
     <div class="row mt-5">
@@ -62,7 +63,7 @@
                 placeholder="Company Name"
                 name="company_name"
                 value="{{ user_profile.company_name}}"
-                required
+                
               />
             </p>
             <p>
@@ -81,7 +82,7 @@
                 placeholder="Phone Number"
                 name="phone_no"
                 value="{{ user_profile.phone_no}}"
-                required
+                
               />
             </p>
             <p>
@@ -146,6 +147,8 @@
                 class="rounded-2 border border-2"
                 placeholder="Recipient Name"
                 name="recipient_name"
+                id="recipient_name"
+                
               />
             </p>
             <p>
@@ -154,6 +157,8 @@
                 class="rounded-2 border border-2"
                 placeholder="Recipient Phone No"
                 name="recipient_phone"
+                id="recipient_phone"
+                
               />
             </p>
           </div>
@@ -165,6 +170,8 @@
                 class="rounded-2 border border-2"
                 placeholder="Amount"
                 name="amount"
+                id="amount"
+                
               />
             </p>
           </div>
@@ -187,6 +194,7 @@
                 placeholder="Journal Number"
                 id="journalNumber"
                 name="Journal_no"
+
               />
             </p>
           </div>
@@ -434,8 +442,13 @@
     </div>
     <div class="row mt-4 mb-5">
       <div class="col">
-        <button id="generate_pdf" class="btn btn-primary">
+        <button type="submit" id="generate_pdf" class="btn btn-primary">
           Generate Receipt
+        </button>
+      </div>
+      <div class="col">
+        <button type="button" id="save_data" class="btn btn-primary">
+          Save Transition
         </button>
       </div>
     </div>

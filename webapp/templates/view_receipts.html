@@ -2,7 +2,7 @@
 <div class="container">
       <div class="row justify-content-center">
         <div class="col-md-8">
-          <form action="{% url 'webapp:view_receipts' id=user.id %}" method="GET" class="row justify-content-center">
+          <form action="{% url 'webapp:view_receipts' %}" method="GET" class="row justify-content-center">
                 {% csrf_token %}
              <div class="col-md-4 mb-3">
               <label for="year">Year:</label>
@@ -31,6 +31,7 @@
               <button
                 class="btn btn-primary col-12"
                 type="submit"
+                id="filterButton"
               >
                 Search
               </button>
