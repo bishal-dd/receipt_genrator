@@ -36,7 +36,7 @@ def receipts_view(request):
         month = request.GET.get('month')  # Get the selected month from the request
         user_receipts = Receipt.objects.filter(user_id=user_id).order_by('date')
         user_receipts = year_month_filter(user_receipts, year, month)
-        total_amount = user_receipts.aggregate(Sum('total_amount'))['total_amount__sum'] or 0
+        total_amount = user_receipts.aggregate(Sum('amount'))['amount__sum'] or 0
     user_receipts = pagination(request, user_receipts, 10)
 
     return render(request, 'view_receipts.html', {'user_receipts': user_receipts, 'total_amount': total_amount})
