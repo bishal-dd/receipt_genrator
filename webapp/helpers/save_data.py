@@ -15,16 +15,21 @@ def save_profile(request, user_id):
     signature_image = request.FILES.get('signature_image', None)
     manual_signature_image = request.POST.get('manual_signature_image')
 
+    print(image)
     if profile:
         # Update the existing profile
         profile.company_name = company_name
-        if image:
+        if image and image != profile.logo_image:
+            if profile.logo_image:
+                profile.logo_image.delete(save=False)
             profile.logo_image = image
         profile.phone_no = phone_no
         profile.address = address
         profile.email = email
         profile.city = city
-        if signature_image:
+        if signature_image and signature_image != profile.signature_image:
+            if profile.signature_image:
+                profile.signature_image.delete(save=False)
             profile.signature_image = signature_image
         profile.manual_signature_image = manual_signature_image
     else:

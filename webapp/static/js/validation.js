@@ -49,12 +49,29 @@ $(document).ready(function () {
 
   $("#save_data").on("click", function (e) {
     e.preventDefault(); // Prevent the default form submission
-    var formData = $("form").serialize();
+    // Create a FormData object to handle the form data
+    var formData = new FormData($("form")[0]);
+
+    // Append the image file to the FormData object
+    var logoImageInput = $("#logo_edit").val;
+    if (logoImageInput) {
+      formData.append("logo_image", logoImageInput);
+    }
+
+    var signInput = $("#signature_edit").val;
+    if (signInput) {
+      formData.append("signature_image", signInput);
+    }
+
     if (validate()) {
       $.ajax({
         type: "POST",
         url: "/save_receipt/", // Replace with your actual URL
         data: formData,
+        processData: false,
+        contentType: false,
+        cache: false,
+        enctype: "multipart/form-data",
         success: function (response) {
           $("#successModal").modal("show");
           $("#validationSuccessMessage").text("Your data was saved");
