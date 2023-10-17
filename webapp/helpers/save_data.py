@@ -15,7 +15,7 @@ def save_profile(request, user_id):
     signature_image = request.FILES.get('signature_image', None)
     manual_signature_image = request.POST.get('manual_signature_image')
 
-    print(image)
+    phone_no = allow_empty(phone_no)
     if profile:
         # Update the existing profile
         profile.company_name = company_name

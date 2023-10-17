@@ -12,7 +12,7 @@
       <div class="col paper p-5 shadow">
         <div class="row">
           <div class="col text-center">
-            {% if user_profile.logo_image.url %}
+            {% if user_profile.logo_image %}
 
             <img
               src="{{user_profile.logo_image.url}}"
@@ -46,12 +46,21 @@
               /><br />Upload Logo</label
             >
             <input type="file" id="logo_upload" name="logo_image" />
+             {% if user_profile.logo_image %}
             <img
               id="uploaded_logo"
               src="{{user_profile.logo_image.url}}"
               alt="Uploaded Logo"
               class="mt-4"
             />
+            {% else %}
+              <img
+              id="uploaded_logo"
+              src=""
+              alt="Uploaded Logo"
+              class="mt-4"
+            />
+            {% endif %}
 
             {% endif%}
           </div>

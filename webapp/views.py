@@ -1,7 +1,8 @@
 from django.db.models import Sum
-from django.shortcuts import render, redirect, HttpResponse
+from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth import logout
 from .models import Profile, Receipt, Version, Service
+from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
 from .helpers import save_data
 from .pagination.pagination import pagination
@@ -9,6 +10,9 @@ from .helpers.pdf_generation import pdf_generation
 from .filters.year_month_filter import year_month_filter
 from .helpers.check_version import CheckVersion, add_count
 from django.http import JsonResponse
+from django.http import HttpResponseRedirect
+from django.urls import reverse
+
 
 
 def index(request):
@@ -81,6 +85,7 @@ def save_receipt(request):
         mode = CheckVersion(user_id).mode()
         use_count = CheckVersion(user_id).use_count()
         version = save_data.save_version(request, user_id)
+        print(use_count)
         if mode == "paid" or (mode == "trial" and use_count <= 5):
 
             add_count(version)
@@ -106,3 +111,27 @@ def generate_individual_receipt(request, id):
 
     # Return the result of the pdf_generation function
     return pdf_generation(data)
+
+
+def toggle_user_status(request, pk):
+    user = get_object_or_404(User, pk=pk)
+
+    # Toggle the user status attribute (e.g., is_staff, is_superuser)
+    user.is_staff = not user.is_staff
+    user.save()
+
+    return redirect("admin:webapp_user_changelist")
+
+
+def change_mode(request, user_id):
+    try:
+        user = User.objects.get(pk=user_id)
+        version = Version.objects.get(user=user)
+        if version.mode == "trial":
+            version.mode = "paid"
+        else:
+            version.mode = "trial"
+        version.save()
+    except User.DoesNotExist:
+        pass
+    return HttpResponseRedirect(reverse('admin:auth_user_changelist'))

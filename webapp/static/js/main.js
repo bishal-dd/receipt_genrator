@@ -100,6 +100,9 @@ $(document).ready(function () {
   // Set the default value of the date input field to today's date
   $("#dateInput").val(getCurrentDate());
 
+   if ($("#paymentMode").val === "Bank Transfer") {
+      $("#journalNumber").show(); // Show the "Journal Number" input field
+    }
   // START PAYMENT MODE  // Listen for changes in the select element
   $("#paymentMode").on("change", function () {
     var selectedOption = $(this).val(); // Get the selected option's value

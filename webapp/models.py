@@ -18,9 +18,9 @@ class BaseModel(models.Model):
 
 
 class Profile(BaseModel):
-    company_name = models.CharField(max_length=100, null=False)
-    logo_image = models.ImageField(upload_to='images/')
-    phone_no = models.IntegerField(null=False)
+    company_name = models.CharField(max_length=100, null=True)
+    logo_image = models.ImageField(upload_to='images/', null=True)
+    phone_no = models.IntegerField(null=True, blank=True)
     address = models.CharField(max_length=100, null=True)
     email = models.CharField(max_length=100, null=True)
     city = models.CharField(max_length=100, null=True)
@@ -55,3 +55,7 @@ class Version(BaseModel):
         'trial', 'trial'), ('paid', 'paid')], default='trial')
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     use_count = models.IntegerField(null=False, default=0)
+
+    def __str__(self):
+        return f'{self.mode}'
+

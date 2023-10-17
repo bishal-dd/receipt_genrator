@@ -16,6 +16,8 @@ urlpatterns = [
     path('save_receipt/', views.save_receipt, name="save_receipt"),
     path('generate_individual_receipt/<int:id>/',
          views.generate_individual_receipt, name='generate_individual_receipt'),
+    path("admin/webapp/user/<int:pk>/version/", views.toggle_user_status, name="version"),
+    path('admin/change_mode/<int:user_id>/', views.change_mode, name='change_mode'),
 
 ]
 

@@ -23,6 +23,7 @@
     <table>
       <tr>
         <td rowspan="5">
+          {% if profile.logo_image%}
           <img
             src="	http://127.0.0.1:8000/{{profile.logo_image.url}}"
             alt="Uploaded Logo"
@@ -31,6 +32,9 @@
             width="300"
             height="200"
           />
+          {% else %}
+            No Logo
+          {% endif %}
         </td>
         <td class="profile">{{profile.company_name}}</td>
         <td class="header_receipt">{{receipt.receipt_name}}</td>
@@ -123,7 +127,7 @@
       <tr>
         <td>
           <img
-            id="signatureImage"
+            id="manual_signatureImage"
             src="{{ profile.manual_signature_image}}"
             class="mt-4"
           /><br />
@@ -132,6 +136,7 @@
       </tr>
       <tr>
         <td>
+          {% if profile.signature_image %}
           <img
             id="signatureImage"
             src="http://127.0.0.1:8000/{{profile.signature_image.url}}"
@@ -139,6 +144,9 @@
             width="300"
             height="200"
           />
+          {% else %}
+
+          {% endif %}
         </td>
       </tr>
     </table>
