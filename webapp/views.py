@@ -7,7 +7,8 @@ from .helpers import save_data
 from .pagination.pagination import pagination
 from .helpers.pdf_generation import pdf_generation
 from .filters.year_month_filter import year_month_filter
-from django.contrib import messages
+from .helpers.check_version import CheckVersion, add_count
+from django.http import JsonResponse
 
 
 def index(request):
@@ -20,6 +21,10 @@ def index(request):
 
 def login(request):
     return render(request, 'login.html')
+
+
+def trial_period(request):
+    return render(request, 'trial_period.html')
 
 
 def logout_view(request):
@@ -50,10 +55,12 @@ def receipts_view(request):
 def generate_pdf(request):
     if request.method == 'POST':
         user_id = request.user
-        mode = Version.objects.filter(user=user_id).first().mode
+        mode = CheckVersion(user_id).mode()
+        use_count = CheckVersion(user_id).use_count()
+        version = save_data.save_version(request, user_id)
 
-        if (mode == "paid"):
-            version = save_data.save_version(request, user_id)
+        if mode == "paid" or (mode == "trial" and use_count <= 5):
+            add_count(version)
             profile = save_data.save_profile(request, user_id)
             receipt, services = save_data.save_receipt(request, user_id)
 
@@ -65,22 +72,24 @@ def generate_pdf(request):
             pdf_generation(data)
             return pdf_generation(data)
         else:
-            script = """$(document).ready(function () {
-            $("#infoModal").modal("show")
-            $("#validationInfoMessage").text("please pay")
-            })"""
-            return HttpResponse(script)
+            return redirect("webapp:trial_period")
 
 
 def save_receipt(request):
     if request.method == 'POST':
         user_id = request.user
-        save_data.save_version(request, user_id)
-        save_data.save_version(request, user_id)
-        save_data.save_profile(request, user_id)
-        save_data.save_receipt(request, user_id)
+        mode = CheckVersion(user_id).mode()
+        use_count = CheckVersion(user_id).use_count()
+        version = save_data.save_version(request, user_id)
+        if mode == "paid" or (mode == "trial" and use_count <= 5):
 
-    return redirect('webapp:index')
+            add_count(version)
+            save_data.save_profile(request, user_id)
+            save_data.save_receipt(request, user_id)
+
+            return JsonResponse({"message": "Data saved successfully"})  # Return a JSON response
+        else:
+            return JsonResponse({"message": "Trial attempts up"})
 
 
 def generate_individual_receipt(request, id):

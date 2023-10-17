@@ -12,6 +12,7 @@ urlpatterns = [
     path('logout', views.logout_view, name='logout'),
     path('generate_pdf/', views.generate_pdf, name="generate_pdf"),
     path('view_receipts/', views.receipts_view, name="view_receipts"),
+    path('trial_period/', views.trial_period, name="trial_period"),
     path('save_receipt/', views.save_receipt, name="save_receipt"),
     path('generate_individual_receipt/<int:id>/',
          views.generate_individual_receipt, name='generate_individual_receipt'),

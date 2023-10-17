@@ -113,3 +113,4 @@ def save_version(request, user_id):
         version = Version(user=user_id)
         version.save()
         return version
+    return version

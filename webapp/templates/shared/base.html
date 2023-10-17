@@ -42,9 +42,15 @@
     <title>Receipt Generator</title>
   </head>
   <body>
-    {% block nav %} {% include "shared/navbar.html" %} {% endblock %} {% block
-    validation %} {% include "validations/error.html" %} {% include
-    "validations/success.html" %} {% include "validations/info.html" %}
-    {%endblock %} {% block body%} {% endblock%}
+    {% block nav %}
+      {% include "shared/navbar.html" %}
+    {% endblock %}
+    {% block validation %}
+      {% include "validations/error.html" %}
+      {% include "validations/success.html" %}
+      {% include "validations/info.html" %}
+    {%endblock %}
+    {% block body%}
+    {% endblock%}
   </body>
 </html>

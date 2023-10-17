@@ -80,11 +80,19 @@ $(document).ready(function () {
         cache: false,
         enctype: "multipart/form-data",
         success: function (response) {
-          $("#successModal").modal("show");
-          $("#validationSuccessMessage").text("Your data was saved");
-          $("#data_form")[0].reset();
-          $("#dateInput").val(getCurrentDate());
-          $("#totalAmount, #totalAmountpaid").text("");
+        if(response.message === "Trial attempts up")
+            {
+                window.open("/trial_period/", "_blank");
+            }
+        else
+        {
+              $("#successModal").modal("show");
+              $("#validationSuccessMessage").text("Your data was saved");
+              $("#data_form")[0].reset();
+              $("#dateInput").val(getCurrentDate());
+              $("#totalAmount, #totalAmountpaid").text("");
+        }
+
         },
         error: function (error) {
           // Handle any errors that occur during the AJAX request
