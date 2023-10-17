@@ -1,7 +1,7 @@
 <!-- Add this modal at the end of your HTML body -->
 <div
   class="modal fade"
-  id="validationModal"
+  id="infoModal"
   tabindex="-1"
   aria-labelledby="exampleModalLabel"
   aria-hidden="true"
@@ -9,8 +9,8 @@
 >
   <div class="modal-dialog modal-dialog-centered" role="document">
     <div class="modal-content">
-      <div class="modal-header bg-danger text-light">
-        <h5 class="modal-title">Error</h5>
+      <div class="modal-header bg-info text-light">
+        <h5 class="modal-title">Info</h5>
         <button
           type="button"
           class="close"
@@ -22,7 +22,7 @@
       </div>
       <div class="modal-body">
         <div class="alert alert-danger" role="alert">
-          <p id="validationErrorMessage" class="text-danger"></p>
+          <p id="validationinfoMessage" class="text-info"></p>
         </div>
       </div>
     </div>

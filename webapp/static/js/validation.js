@@ -36,6 +36,7 @@ $(document).ready(function () {
       return true;
     }
   }
+
   $("#generate_pdf").on("click", function (e) {
     e.preventDefault(); // Prevent the default form submission
 
@@ -54,13 +55,19 @@ $(document).ready(function () {
 
     // Append the image file to the FormData object
     var logoImageInput = $("#logo_edit").val;
+    var logoImagenew = $("#logo_upload").val;
     if (logoImageInput) {
       formData.append("logo_image", logoImageInput);
+    } else if (logoImagenew) {
+      formData.append("logo_image", logoImagenew);
     }
 
     var signInput = $("#signature_edit").val;
+    var signInputNew = $("#signature_upload").val;
     if (signInput) {
       formData.append("signature_image", signInput);
+    } else if (signInputNew) {
+      formData.append("signature_image", signInputNew);
     }
 
     if (validate()) {

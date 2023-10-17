@@ -100,8 +100,6 @@ $(document).ready(function () {
   // Set the default value of the date input field to today's date
   $("#dateInput").val(getCurrentDate());
 
-  // END SET CURRENT DATE
-
   // START PAYMENT MODE  // Listen for changes in the select element
   $("#paymentMode").on("change", function () {
     var selectedOption = $(this).val(); // Get the selected option's value
@@ -110,10 +108,10 @@ $(document).ready(function () {
     if (selectedOption === "Bank Transfer") {
       $("#journalNumber").show(); // Show the "Journal Number" input field
     } else {
-      $("#journalNumber").hide(); // Hide the "Journal Number" input field for other options
+      $("#journalNumber").hide();
+      $("#journalNumber").val(""); // Hide the "Journal Number" input field for other options
     }
   });
-
   // END PAYMENT MODE
 
   // START CALCULATE AMOUNT
@@ -128,11 +126,9 @@ $(document).ready(function () {
     // Set the content of the #cost_amount element
     $("#cost_amount").val(calculatedAmount);
   });
-
   // END CALCULATE AMOUNT
 
   // START ADD COL
-
   $("#addRowButton").click(function (event) {
     event.preventDefault(); // Prevent the default behavior
 
@@ -140,7 +136,7 @@ $(document).ready(function () {
     var newRow = $(".data-row:first").clone();
 
     // Clear input values in the cloned row
-    newRow.find(".rate-input, .quantity-input").val("");
+    newRow.find(".rate-input, .quantity-input, #description").val("");
     newRow.find("#cost_amount").val("0");
 
     // Append the cloned row to the table

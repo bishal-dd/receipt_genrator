@@ -1,5 +1,5 @@
 from django.db.models import Sum
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, HttpResponse
 from django.contrib.auth import logout
 from .models import Profile, Receipt, Version, Service
 from django.contrib.auth.decorators import login_required
@@ -50,17 +50,26 @@ def receipts_view(request):
 def generate_pdf(request):
     if request.method == 'POST':
         user_id = request.user
-        version = save_data.save_version(request, user_id)
-        profile = save_data.save_profile(request, user_id)
-        receipt, services = save_data.save_receipt(request, user_id)
+        mode = Version.objects.filter(user=user_id).first().mode
 
-        data = {
-            "profile": profile,
-            "receipt": receipt,
-            "services": services,
-        }
-        pdf_generation(data)
-        return pdf_generation(data)
+        if (mode == "paid"):
+            version = save_data.save_version(request, user_id)
+            profile = save_data.save_profile(request, user_id)
+            receipt, services = save_data.save_receipt(request, user_id)
+
+            data = {
+                "profile": profile,
+                "receipt": receipt,
+                "services": services,
+            }
+            pdf_generation(data)
+            return pdf_generation(data)
+        else:
+            script = """$(document).ready(function () {
+            $("#infoModal").modal("show")
+            $("#validationInfoMessage").text("please pay")
+            })"""
+            return HttpResponse(script)
 
 
 def save_receipt(request):
