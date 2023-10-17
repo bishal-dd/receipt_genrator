@@ -39,7 +39,7 @@ class Receipt(BaseModel):
     Journal_no = models.IntegerField(null=True, blank=True)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     date = models.DateField(null=False)
-    total_amount = models.FloatField(null=False, default=0)
+    total_amount = models.FloatField(null=True, default=0)
 
 
 class Service(BaseModel):

@@ -102,8 +102,7 @@ $(document).ready(function () {
 
   // END SET CURRENT DATE
 
-  // START PAYMENT MODE
-  // Listen for changes in the select element
+  // START PAYMENT MODE  // Listen for changes in the select element
   $("#paymentMode").on("change", function () {
     var selectedOption = $(this).val(); // Get the selected option's value
 

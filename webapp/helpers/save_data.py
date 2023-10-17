@@ -1,4 +1,5 @@
 from ..models import Profile, Receipt, Version, Service
+from ..validation.allow_empty import allow_empty
 
 
 def save_profile(request, user_id):
@@ -78,6 +79,9 @@ def save_receipt(request, user_id):
     date = request.POST.get('date')
     total_amount = request.POST.get('total_amount')
     user = user_id
+
+    journal_no = allow_empty(journal_no)
+    total_amount = allow_empty(total_amount)
 
     receipt = Receipt(
         recipient_name=recipient_name,

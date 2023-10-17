@@ -32,11 +32,15 @@ def receipts_view(request):
     user_receipts = None
     if request.user.is_authenticated:
         user_id = request.user.id
-        year = request.GET.get('year')  # Get the selected year from the request
-        month = request.GET.get('month')  # Get the selected month from the request
-        user_receipts = Receipt.objects.filter(user_id=user_id).order_by('date')
+        # Get the selected year from the request
+        year = request.GET.get('year')
+        # Get the selected month from the request
+        month = request.GET.get('month')
+        user_receipts = Receipt.objects.filter(
+            user_id=user_id).order_by('-id')
         user_receipts = year_month_filter(user_receipts, year, month)
-        total_amount = user_receipts.aggregate(Sum('amount'))['amount__sum'] or 0
+        total_amount = user_receipts.aggregate(
+            Sum('amount'))['amount__sum'] or 0
     user_receipts = pagination(request, user_receipts, 10)
 
     return render(request, 'view_receipts.html', {'user_receipts': user_receipts, 'total_amount': total_amount})

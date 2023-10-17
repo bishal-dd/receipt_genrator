@@ -63,7 +63,6 @@
                 placeholder="Company Name"
                 name="company_name"
                 value="{{ user_profile.company_name}}"
-                
               />
             </p>
             <p>
@@ -82,7 +81,6 @@
                 placeholder="Phone Number"
                 name="phone_no"
                 value="{{ user_profile.phone_no}}"
-                
               />
             </p>
             <p>
@@ -148,7 +146,6 @@
                 placeholder="Recipient Name"
                 name="recipient_name"
                 id="recipient_name"
-                
               />
             </p>
             <p>
@@ -158,7 +155,6 @@
                 placeholder="Recipient Phone No"
                 name="recipient_phone"
                 id="recipient_phone"
-                
               />
             </p>
           </div>
@@ -171,7 +167,6 @@
                 placeholder="Amount"
                 name="amount"
                 id="amount"
-                
               />
             </p>
           </div>
@@ -181,8 +176,9 @@
               <select
                 class="rounded-2 border border-2"
                 id="paymentMode"
-                name=""
+                name="paymentMode"
               >
+                <option value="">Select</option>
                 <option value="Bank Transfer">Bank Transfer</option>
                 <option value="cash">Cash</option>
               </select>
@@ -194,7 +190,6 @@
                 placeholder="Journal Number"
                 id="journalNumber"
                 name="Journal_no"
-
               />
             </p>
           </div>
