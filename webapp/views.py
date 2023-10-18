@@ -59,9 +59,9 @@ def receipts_view(request):
 def generate_pdf(request):
     if request.method == 'POST':
         user_id = request.user
+        version = save_data.save_version(request, user_id)
         mode = CheckVersion(user_id).mode()
         use_count = CheckVersion(user_id).use_count()
-        version = save_data.save_version(request, user_id)
 
         if mode == "paid" or (mode == "trial" and use_count <= 5):
             add_count(version)
@@ -82,10 +82,10 @@ def generate_pdf(request):
 def save_receipt(request):
     if request.method == 'POST':
         user_id = request.user
+        version = save_data.save_version(request, user_id)
         mode = CheckVersion(user_id).mode()
         use_count = CheckVersion(user_id).use_count()
-        version = save_data.save_version(request, user_id)
-        print(use_count)
+
         if mode == "paid" or (mode == "trial" and use_count <= 5):
 
             add_count(version)
