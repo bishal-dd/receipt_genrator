@@ -137,11 +137,13 @@
             />
 
          <p> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{profile.title}}</p>
+          {% if profile.signature_image %}
           <img
             id="signatureImage"
             src="http://127.0.0.1:8000/{{profile.signature_image.url}}"
             height="100"
           />
+          {% endif %}
 
         </td>
       </tr>
