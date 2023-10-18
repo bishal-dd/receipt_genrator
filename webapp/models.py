@@ -3,6 +3,7 @@ from django.contrib.auth.models import User
 from django.utils import timezone
 
 
+
 class BaseModel(models.Model):
     created_at = models.DateTimeField(default=timezone.now, editable=False)
     updated_at = models.DateTimeField(default=timezone.now)
@@ -19,14 +20,13 @@ class BaseModel(models.Model):
 
 class Profile(BaseModel):
     company_name = models.CharField(max_length=100, null=True)
-    logo_image = models.ImageField(upload_to='images/', null=True)
+    logo_image = models.TextField(null=True)
     phone_no = models.IntegerField(null=True, blank=True)
     address = models.CharField(max_length=100, null=True)
     email = models.CharField(max_length=100, null=True)
     city = models.CharField(max_length=100, null=True)
     title = models.CharField(max_length=100, null=True)
-    signature_image = models.ImageField(
-        upload_to='images/', null=True, blank=True)
+    signature_image = models.TextField(null=True)
     manual_signature_image = models.CharField(max_length=20000, null=True)
     user = models.OneToOneField(User, on_delete=models.CASCADE, null=True)
     slug = models.SlugField(null=False)

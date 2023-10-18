@@ -1,5 +1,6 @@
 from ..models import Profile, Receipt, Version, Service
 from ..validation.allow_empty import allow_empty
+from .convert_image_url import convert_image
 
 
 def save_profile(request, user_id):
@@ -16,22 +17,25 @@ def save_profile(request, user_id):
     signature_image = request.FILES.get('signature_image', None)
     manual_signature_image = request.POST.get('manual_signature_image')
 
+    if image:
+        image = convert_image(image)
+
+    if signature_image:
+        signature_image = convert_image(signature_image)
+
     phone_no = allow_empty(phone_no)
     if profile:
         # Update the existing profile
         profile.company_name = company_name
-        if image and image != profile.logo_image:
-            if profile.logo_image:
-                profile.logo_image.delete(save=False)
+        if image:
             profile.logo_image = image
+
         profile.phone_no = phone_no
         profile.address = address
         profile.email = email
         profile.city = city
         profile.title = title
-        if signature_image and signature_image != profile.signature_image:
-            if profile.signature_image:
-                profile.signature_image.delete(save=False)
+        if signature_image:
             profile.signature_image = signature_image
         profile.manual_signature_image = manual_signature_image
     else:

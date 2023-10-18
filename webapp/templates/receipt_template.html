@@ -28,7 +28,7 @@
         <td rowspan="5">
           {% if profile.logo_image%}
           <img
-            src="http://127.0.0.1:8000/{{profile.logo_image.url}}"
+            src="data:image/png;base64,{{profile.logo_image}}"
             alt="Uploaded Logo"
             id="logo"
             class="mt-4"
@@ -140,7 +140,7 @@
           {% if profile.signature_image %}
           <img
             id="signatureImage"
-            src="http://127.0.0.1:8000/{{profile.signature_image.url}}"
+            src="data:image/png;base64,{{profile.signature_image}}"
             height="100"
           />
           {% endif %}

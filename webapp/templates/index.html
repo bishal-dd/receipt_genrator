@@ -15,7 +15,7 @@
             {% if user_profile.logo_image %}
 
             <img
-              src="{{user_profile.logo_image.url}}"
+              src="data:image/png;base64,{{user_profile.logo_image}}"
               alt="Uploaded Logo"
               id="edited_logo"
               class="mt-4 rounded-2"
@@ -31,7 +31,7 @@
               type="file"
               id="logo_edit"
               name="logo_image"
-              value="{{user_profile.logo_image}}"
+              value="data:image/png;base64,{{user_profile.logo_image}}"
             />
 
             {% else %}
@@ -49,7 +49,7 @@
             {% if user_profile.logo_image %}
             <img
               id="uploaded_logo"
-              src="{{user_profile.logo_image.url}}"
+              src="data:image/png;base64,{{user_profile.logo_image}}"
               alt="Uploaded Logo"
               class="mt-4"
             />
@@ -401,7 +401,7 @@
 
             <img
               id="edited_signature"
-              src="{{ user_profile.signature_image.url}}"
+              src="data:image/png;base64,{{ user_profile.signature_image}}"
               alt="Uploaded signature"
               class="mt-4"
               width="200"
