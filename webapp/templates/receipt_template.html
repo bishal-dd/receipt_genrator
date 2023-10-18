@@ -129,23 +129,20 @@
       </tr>
       <tr>
         <td>
-          {% if profile.signature_image %}
-          <img
-            id="signatureImage"
-            src="http://127.0.0.1:8000/{{profile.signature_image.url}}"
-            class="mt-4"
-            width="300"
-            height="200"
-          />
-          {% else %}
-            <img
+           <img
               id="manual_signatureImage"
               src="{{ profile.manual_signature_image}}"
               class="mt-4"
+              height="70"
             />
-          {% endif %}
-        <br />
-          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{profile.title}}
+
+         <p> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{profile.title}}</p>
+          <img
+            id="signatureImage"
+            src="http://127.0.0.1:8000/{{profile.signature_image.url}}"
+            height="100"
+          />
+
         </td>
       </tr>
       <tr>

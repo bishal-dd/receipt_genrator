@@ -135,3 +135,17 @@ def change_mode(request, user_id):
     except User.DoesNotExist:
         pass
     return HttpResponseRedirect(reverse('admin:auth_user_changelist'))
+
+
+def delete_sign(request):
+    user = request.user
+    try:
+        profile = Profile.objects.get(user=user)
+        if profile.signature_image:
+            # Delete the image file from the server
+            profile.signature_image.delete()
+            return JsonResponse({"message": "Signature deleted successfully"})
+        else:
+            return JsonResponse({"message": "Signature not found"})
+    except Profile.DoesNotExist:
+        return JsonResponse({"message": "User profile not found"}, status=404)

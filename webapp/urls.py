@@ -14,6 +14,7 @@ urlpatterns = [
     path('view_receipts/', views.receipts_view, name="view_receipts"),
     path('trial_period/', views.trial_period, name="trial_period"),
     path('save_receipt/', views.save_receipt, name="save_receipt"),
+    path('delete_sign/', views.delete_sign, name="delete_sign"),
     path('generate_individual_receipt/<int:id>/',
          views.generate_individual_receipt, name='generate_individual_receipt'),
     path("admin/webapp/user/<int:pk>/version/", views.toggle_user_status, name="version"),

@@ -4,6 +4,27 @@ $(document).ready(function () {
    $("#validationInfoMessage").text("This Feature will be out very soon. For more information please call or message the following number:");
   })
 
+  // CSRF TOKEN
+    function getCookie(name) {
+    var cookieValue = null;
+    if (document.cookie && document.cookie != '') {
+        var cookies = document.cookie.split(';');
+        for (var i = 0; i < cookies.length; i++) {
+            var cookie = jQuery.trim(cookies[i]);
+            // Does this cookie string begin with the name we want?
+            if (cookie.substring(0, name.length + 1) == (name + '=')) {
+                cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                break;
+            }
+        }
+    }
+    return cookieValue;
+}
+var csrftoken = getCookie('csrftoken');
+
+
+
+  ////
   // START CANVAS
   const canvas = $("#signatureCanvas")[0];
   const context = canvas.getContext("2d");
@@ -205,8 +226,33 @@ $(document).ready(function () {
       reader.readAsDataURL(file);
     }
   });
-  // END IMAGE UPLOAD
 
+
+  // END IMAGE UPLOAD
+$("#delete_sign").on("click", function (e) {
+  e.preventDefault(); // Prevent the default link behavior
+    $.ajaxSetup({
+        headers: { "X-CSRFToken": csrftoken }
+    });
+
+  $.ajax({
+    type: "DELETE",
+    url: "/delete_sign/", // The URL to the deletion endpoint
+    success: function (response) {
+      if (response.message === "Signature deleted successfully") {
+        // Reload the page after successful deletion
+        window.location.reload();
+      } else {
+        $("#validationModal").modal("show");
+        $("#validationErrorMessage").text(response.message);
+      }
+    },
+    error: function (error) {
+      // Handle any errors that occur during the AJAX request
+      alert("Error while deleting the signature: " + error.responseText);
+    },
+  });
+});
 
 
 });
