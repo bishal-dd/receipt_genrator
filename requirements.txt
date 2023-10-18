@@ -8,7 +8,6 @@ chardet==4.0.0
 cliapp==1.0.9
 click==8.0.3
 colorama==0.4.4
-command-not-found==0.3
 cryptography==3.4.8
 cssselect2==0.7.0
 cupshelpers==1.0
