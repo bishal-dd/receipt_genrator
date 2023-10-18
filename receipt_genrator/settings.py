@@ -28,7 +28,7 @@ DEBUG = True
 APPEND_SLASH = False
 
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['.vercel.app']
 
 
 # Application definition
@@ -105,11 +105,12 @@ WSGI_APPLICATION = 'receipt_genrator.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'receipt-generator',
-        'USER': 'bishal',
-        'PASSWORD': 'bishal',
-        'HOST': 'localhost',  # Change this to the PostgreSQL server's address
-        'PORT': '5432',  # Change this to the PostgreSQL server's port
+        'URL': 'postgresql://postgres:egkt3dotlYsrGDGKO66I@containers-us-west-173.railway.app:5555/railway',
+        'NAME': 'railway',
+        'USER': 'postgres',
+        'PASSWORD': 'egkt3dotlYsrGDGKO66I',
+        'HOST': 'containers-us-west-173.railway.app',  # Change this to the PostgreSQL server's address
+        'PORT': '5555',  # Change this to the PostgreSQL server's port
     }
 }
 
