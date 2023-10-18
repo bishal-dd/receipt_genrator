@@ -42,9 +42,9 @@ $(document).ready(function () {
 
     if (validate()) {
       $("#data_form").submit();
-      $("#data_form")[0].reset();
-      $("#dateInput").val(getCurrentDate());
-      $("#totalAmount, #totalAmountpaid").text("");
+         setTimeout(function() {
+            window.location.href = "/";
+         }, 2000);
     }
   });
 
@@ -88,9 +88,10 @@ $(document).ready(function () {
         {
               $("#successModal").modal("show");
               $("#validationSuccessMessage").text("Your data was saved");
-              $("#data_form")[0].reset();
-              $("#dateInput").val(getCurrentDate());
-              $("#totalAmount, #totalAmountpaid").text("");
+               setTimeout(function() {
+                    window.location.href = "/";
+               }, 2000);
+
         }
 
         },

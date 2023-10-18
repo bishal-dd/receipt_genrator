@@ -1,48 +1,58 @@
-{% extends "shared/base.html"%} {% block body%}
+{% extends "shared/base.html"%}
+{% block body%}
 <div class="container">
-      <div class="row justify-content-center">
-        <div class="col-md-8">
-          <form action="{% url 'webapp:view_receipts' %}" method="GET" class="row justify-content-center">
-                {% csrf_token %}
-             <div class="col-md-4 mb-3">
-              <label for="year">Year:</label>
-              <input type="text" class="form-control yearpicker" id="year" name="year"/>
-            </div>
-            <div class="col-md-4 mb-3">
-              <label for="Month">Month:</label>
-            <select class="form-control" id="Month" name="month">
-                <option value="">Select Month</option>
-                <option value="1">January</option>
-                <option value="2">February</option>
-                <option value="3">March</option>
-                <option value="4">April</option>
-                <option value="5">May</option>
-                <option value="6">June</option>
-                <option value="7">July</option>
-                <option value="8">August</option>
-                <option value="9">September</option>
-                <option value="10">October</option>
-                <option value="11">November</option>
-                <option value="12">December</option>
-            </select>
-            </div>
-
-            <div class="col-4 mt-3">
-              <button
-                class="btn btn-primary col-12"
-                type="submit"
-                id="filterButton"
-              >
-                Search
-              </button>
-            </div>
-          </form>
+  <div class="row justify-content-center">
+    <div class="col-md-8">
+      <form
+        action="{% url 'webapp:view_receipts' %}"
+        method="GET"
+        class="row justify-content-center"
+      >
+        {% csrf_token %}
+        <div class="col-md-4 mb-3">
+          <label for="year">Year:</label>
+          <input
+            type="text"
+            class="form-control yearpicker"
+            id="year"
+            name="year"
+          />
         </div>
-      </div>
+        <div class="col-md-4 mb-3">
+          <label for="Month">Month:</label>
+          <select class="form-control" id="Month" name="month">
+            <option value="">Select Month</option>
+            <option value="1">January</option>
+            <option value="2">February</option>
+            <option value="3">March</option>
+            <option value="4">April</option>
+            <option value="5">May</option>
+            <option value="6">June</option>
+            <option value="7">July</option>
+            <option value="8">August</option>
+            <option value="9">September</option>
+            <option value="10">October</option>
+            <option value="11">November</option>
+            <option value="12">December</option>
+          </select>
+        </div>
+
+        <div class="col-4 mt-3">
+          <button
+            class="btn btn-primary col-12"
+            type="submit"
+            id="filterButton"
+          >
+            Search
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
 
   <div class="table-responsive">
     <table class="table table-striped table-bordered table-hover">
-      <thead class="thead-dark">
+      <thead class="table-dark">
         <tr>
           <th scope="col">#</th>
           <th scope="col">Received From</th>

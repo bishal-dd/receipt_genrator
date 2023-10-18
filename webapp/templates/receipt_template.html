@@ -5,8 +5,8 @@
 
     <style>
       body {
-        font-family: Arial, sans-serif;
-        font-size: 14px;
+          font-family: "Times New Roman", Times, serif;
+          font-size: 14px;
       }
       .profile {
         padding-left: 10px;
@@ -17,6 +17,9 @@
       .tables {
         margin-top: 40px;
       }
+      #logo{
+        border-radius: 25px;
+      }
     </style>
   </head>
   <body>
@@ -25,7 +28,7 @@
         <td rowspan="5">
           {% if profile.logo_image%}
           <img
-            src="	http://127.0.0.1:8000/{{profile.logo_image.url}}"
+            src="http://127.0.0.1:8000/{{profile.logo_image.url}}"
             alt="Uploaded Logo"
             id="logo"
             class="mt-4"
@@ -44,7 +47,7 @@
         <td class="header_receipt">REC{{receipt.id}}</td>
       </tr>
       <tr>
-        <td class="profile">{{profile.phone_no}}</td>
+        <td class="profile">+975-{{profile.phone_no}}</td>
         <td class="header_receipt">{{receipt.date}}</td>
       </tr>
       <tr>
@@ -76,7 +79,7 @@
         {% endif%}
       </tr>
       <tr>
-        <td class="profile">{{receipt.recipient_phone}}</td>
+        <td class="profile">+975-{{receipt.recipient_phone}}</td>
         <td></td>
         {% if receipt.Journal_no%}
         <td class="profile">{{receipt.Journal_no}}</td>
@@ -126,16 +129,6 @@
       </tr>
       <tr>
         <td>
-          <img
-            id="manual_signatureImage"
-            src="{{ profile.manual_signature_image}}"
-            class="mt-4"
-          /><br />
-          {{profile.company_name}}
-        </td>
-      </tr>
-      <tr>
-        <td>
           {% if profile.signature_image %}
           <img
             id="signatureImage"
@@ -145,8 +138,19 @@
             height="200"
           />
           {% else %}
-
+            <img
+              id="manual_signatureImage"
+              src="{{ profile.manual_signature_image}}"
+              class="mt-4"
+            />
           {% endif %}
+        <br />
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{profile.title}}
+        </td>
+      </tr>
+      <tr>
+        <td>
+
         </td>
       </tr>
     </table>

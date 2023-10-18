@@ -1,4 +1,9 @@
 $(document).ready(function () {
+  $(".coming_soon").click(function () {
+   $("#infoModal").modal("show");
+   $("#validationInfoMessage").text("This Feature will be out very soon. For more information please call or message the following number:");
+  })
+
   // START CANVAS
   const canvas = $("#signatureCanvas")[0];
   const context = canvas.getContext("2d");
@@ -45,7 +50,6 @@ $(document).ready(function () {
     $("#SignImage").val("");
     $("#clear_button_outside").hide(); // Hide the element
     context.clearRect(0, 0, canvas.width, canvas.height);
-    $(".signature_upload_label").show();
   });
 
   // Function to check if the canvas is blank
@@ -81,7 +85,6 @@ $(document).ready(function () {
       $("#clear_button_outside").css("display", "inline-block"); // Remove 'display: none;'
       $("#closeButton").click(); // Trigger a click on the close button
       $("#signatureModal").modal("hide"); // Close the modal
-      $(".signature_upload_label").hide(); // Hide the label
     }
   });
 
@@ -203,4 +206,7 @@ $(document).ready(function () {
     }
   });
   // END IMAGE UPLOAD
+
+
+
 });

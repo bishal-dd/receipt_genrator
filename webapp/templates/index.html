@@ -46,7 +46,7 @@
               /><br />Upload Logo</label
             >
             <input type="file" id="logo_upload" name="logo_image" />
-             {% if user_profile.logo_image %}
+            {% if user_profile.logo_image %}
             <img
               id="uploaded_logo"
               src="{{user_profile.logo_image.url}}"
@@ -54,15 +54,8 @@
               class="mt-4"
             />
             {% else %}
-              <img
-              id="uploaded_logo"
-              src=""
-              alt="Uploaded Logo"
-              class="mt-4"
-            />
-            {% endif %}
-
-            {% endif%}
+            <img id="uploaded_logo" src="" alt="Uploaded Logo" class="mt-4" />
+            {% endif %} {% endif%}
           </div>
           <div class="col">
             <p>
@@ -214,9 +207,13 @@
                 <thead>
                   <tr>
                     <td>
-                      <button id="addRowButton" class="btn" style="background-color:#ff5a28; color:white">
-                        +</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                      Description
+                      <button
+                        id="addRowButton"
+                        class="btn"
+                        style="background-color: #ff5a28; color: white"
+                      >
+                        +</button
+                      >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Description
                     </td>
                     <td>Rate</td>
                     <td>Quantity</td>
@@ -293,7 +290,7 @@
                 class="btn"
                 data-bs-toggle="modal"
                 data-bs-target="#signatureModal"
-                style="background-color:#ff5a28; color:white"
+                style="background-color: #ff5a28; color: white"
               >
                 Sign here
               </button></span
@@ -318,7 +315,6 @@
                 id="SignImage"
                 name="manual_signature_image"
               />
-
               {% else%}
               <img
                 id="signatureImage"
@@ -326,7 +322,7 @@
                 class="mt-4"
               /><br />
               <button
-                class="btn btn-secondary"
+                class="btn btn-danger"
                 id="clear_button_outside"
                 style="display: none"
               >
@@ -341,6 +337,7 @@
 
               {% endif %}
             </p>
+            <p><input type="text" value="{{ user_profile.title}}" class="rounded-2 border border-2" placeholder="Name or Title" id="title" name="title"></p>
           </div>
         </div>
         <!-- Signature Modal -->
@@ -372,10 +369,14 @@
                   height="200"
                   class="border border-2"
                 ></canvas>
-                <button id="clearButton" class="btn btn-danger">
-                  Clear
+                <button id="clearButton" class="btn btn-danger">Clear</button>
+                <button
+                  id="saveButton"
+                  class="btn"
+                  style="background-color: #ff5a28; color: white"
+                >
+                  Save
                 </button>
-                <button id="saveButton" class="btn" style="background-color:#ff5a28; color:white">Save</button>
               </div>
               <div class="modal-footer">
                 <button
@@ -446,7 +447,8 @@
       </div>
     </div>
     <div class="row mt-4 mb-5">
-      <div class="col">
+      {% if user.is_authenticated %}
+      <div class="col text-center">
         <button type="submit" id="generate_pdf" class="btn btn-success">
           Generate Receipt
         </button>
@@ -456,6 +458,19 @@
           Save Transition
         </button>
       </div>
+      {%else%}
+         <div class="col text-center">
+        <a href="{% url 'webapp:login' %}" class="btn btn-success">
+          Generate Receipt
+        </a>
+      </div>
+      <div class="col">
+        <a href="{% url 'webapp:login' %}" class="btn btn-success">
+          Save Transition
+        </a>
+      </div>
+
+      {% endif %}
     </div>
   </form>
 </div>

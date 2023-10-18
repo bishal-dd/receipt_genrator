@@ -1,5 +1,7 @@
 body {
-  background-color: #f3f4f6;
+  background-color: #e2e6e6;
+  font-family: Trebuchet MS, Helvetica, sans-serif;
+
 }
 
 .paper {
@@ -10,23 +12,22 @@ body {
   visibility: hidden;
 }
 
-.navbar{
-    background-color: #fa7946;
-    height: 70px;
+.navbar {
+  background-color: #fa7946;
+  height: 75px;
 }
-#navbarNavDropdown{
-background-color: #fa7946;
-}
-
-.nav-link{
-    color:#f7f0f0;
-    font-size: 20px;
+#navbarNavDropdown {
+  background-color: #fa7946;
 }
 
+.nav-link {
+  color: #f7f0f0;
+  font-size: 20px;
+}
 
 .logo_upload_label,
 .signature_upload_label {
-  background-color: #f3f4f6;
+  background-color: #e2e6e6;
   min-width: 300px;
   min-height: 200px;
 }

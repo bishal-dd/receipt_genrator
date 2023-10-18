@@ -12,6 +12,7 @@ def save_profile(request, user_id):
     address = request.POST.get('address')
     email = request.POST.get('email')
     city = request.POST.get('city')
+    title = request.POST.get('title')
     signature_image = request.FILES.get('signature_image', None)
     manual_signature_image = request.POST.get('manual_signature_image')
 
@@ -27,6 +28,7 @@ def save_profile(request, user_id):
         profile.address = address
         profile.email = email
         profile.city = city
+        profile.title = title
         if signature_image and signature_image != profile.signature_image:
             if profile.signature_image:
                 profile.signature_image.delete(save=False)
@@ -41,6 +43,7 @@ def save_profile(request, user_id):
             address=address,
             email=email,
             city=city,
+            title=title,
             signature_image=signature_image,
             manual_signature_image=manual_signature_image,
             user=user_id

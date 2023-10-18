@@ -24,6 +24,7 @@ class Profile(BaseModel):
     address = models.CharField(max_length=100, null=True)
     email = models.CharField(max_length=100, null=True)
     city = models.CharField(max_length=100, null=True)
+    title = models.CharField(max_length=100, null=True)
     signature_image = models.ImageField(
         upload_to='images/', null=True, blank=True)
     manual_signature_image = models.CharField(max_length=20000, null=True)

@@ -1,42 +1,82 @@
-<nav class="navbar navbar-expand-lg navbar-light mb-5 border border-5 border-dark">
-    <a class="navbar-brand" href="#">Navbar</a>
-    <button
-        class="navbar-toggler"
-        type="button"
-        data-bs-toggle="collapse"
-        data-bs-target="#navbarNavDropdown"
-        aria-controls="navbarNavDropdown"
-        aria-expanded="false"
-        aria-label="Toggle navigation"
-    >
-        <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse border border-5 border-dark" id="navbarNavDropdown" >
-        <ul class="navbar-nav border border-5 border-dark">
-            <li class="nav-item active">
-                <a class="nav-link" href="{% url 'webapp:index' %}">Home</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="{% url 'webapp:view_receipts' %}">View Receipts</a>
-            </li>
-            {% if not user.is_authenticated %}
-                <li class="nav-item">
-                    <a class="nav-link" href="{% url 'webapp:login' %}">Login</a>
-                </li>
-            </ul>
-            {% else %}
-            <ul class="navbar-nav border border-5 border-dark">
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        <img src="{{ user.socialaccount_set.all.0.get_avatar_url }}" width="50" height="50" class="rounded-5">
-                    </a>
-                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <a class="dropdown-item" href="#">{{ user.email }}</a>
-                        <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="{% url 'webapp:logout' %}">Logout</a>
-                    </div>
-                </li>
-            </ul>
-        {% endif %}
-    </div>
+{% load static %}
+<nav class="navbar navbar-expand-lg navbar-light mb-5">
+  <a class="navbar-brand" href="{% url 'webapp:index' %}">
+          <img
+            src="{% static 'images/logo.webp'%}"
+            width="80"
+            height="80"
+            class="rounded-5"
+          />
+  </a>
+  <button
+    class="navbar-toggler"
+    type="button"
+    data-bs-toggle="collapse"
+    data-bs-target="#navbarNavDropdown"
+    aria-controls="navbarNavDropdown"
+    aria-expanded="false"
+    aria-label="Toggle navigation"
+  >
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarNavDropdown">
+    <ul class="navbar-nav" style="width: 100%; display: flex">
+      <!-- Custom CSS for space between items -->
+      <li class="nav-item active">
+        <a class="nav-link" href="{% url 'webapp:index' %}">Generate Receipts</a>
+      </li>
+
+      {% if not user.is_authenticated %}
+      <li class="nav-item">
+        <a class="nav-link" href="{% url 'webapp:login' %}">View Receipts</a>
+      </li>
+       <li class="nav-item">
+        <a class="nav-link" href="{% url 'webapp:login' %}">Invoice</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="{% url 'webapp:login' %}">Quote</a>
+      </li>
+
+      <li class="nav-item offset-lg-3">
+        <a class="nav-link" href="{% url 'webapp:login' %}">Login</a>
+      </li>
+      {% else %}
+      <li class="nav-item">
+        <a class="nav-link" href="{% url 'webapp:view_receipts' %}"
+          >View Receipts</a
+        >
+      </li>
+       <li class="nav-item">
+        <button class="nav-link coming_soon">Invoice</button>
+      </li>
+      <li class="nav-item">
+        <button class="nav-link coming_soon">Quote</button>
+      </li>
+
+      <li class="nav-item dropdown offset-lg-4">
+        <a
+          class="nav-link dropdown-toggle"
+          href="#"
+          id="navbarDropdown"
+          role="button"
+          data-bs-toggle="dropdown"
+          aria-haspopup="true"
+          aria-expanded="false"
+        >
+          <img
+            src="{{ user.socialaccount_set.all.0.get_avatar_url }}"
+            width="50"
+            height="50"
+            class="rounded-5"
+          />
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <a class="dropdown-item" href="#">{{ user.email }}</a>
+          <div class="dropdown-divider"></div>
+          <a class="dropdown-item" href="{% url 'webapp:logout' %}">Logout</a>
+        </div>
+      </li>
+      {% endif %}
+    </ul>
+  </div>
 </nav>

@@ -39,16 +39,19 @@
     <script src="{% static 'js/login.js' %}"></script>
     <script src="{% static 'js/view_receipt.js' %}"></script>
     <script src="{% static 'js/validation.js' %}"></script>
-    <title>Receipt Generator</title>
+    <!-- Add your favicon link here -->
+    <link rel="icon" href="{% static "images/favicon.webp" %}"
+    type="image/x-icon">
+    <title>Digital Paperwork</title>
   </head>
   <body>
     {% block nav %}
-      {% include "shared/navbar.html" %}
+    {% include "shared/navbar.html" %}
     {% endblock %}
     {% block validation %}
-      {% include "validations/error.html" %}
-      {% include "validations/success.html" %}
-      {% include "validations/info.html" %}
+    {% include "validations/error.html" %}
+    {% include "validations/success.html" %}
+    {% include "validations/info.html" %}
     {%endblock %}
     {% block body%}
     {% endblock%}
