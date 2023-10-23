@@ -28,7 +28,7 @@ DEBUG = True
 APPEND_SLASH = False
 
 
-ALLOWED_HOSTS = ['.vercel.app', '127.0.0.1']
+ALLOWED_HOSTS = ['.com', '127.0.0.1']
 
 
 # Application definition
@@ -109,8 +109,14 @@ DATABASES = {
         'NAME': 'railway',
         'USER': 'postgres',
         'PASSWORD': 'egkt3dotlYsrGDGKO66I',
-        'HOST': 'containers-us-west-173.railway.app',  # Change this to the PostgreSQL server's address
+        # Change this to the PostgreSQL server's address
+        'HOST': 'containers-us-west-173.railway.app',
         'PORT': '5555',  # Change this to the PostgreSQL server's port
+        # 'NAME': 'receipt-generator',
+        # 'USER': 'bishal',
+        # 'PASSWORD': 'bishal',
+        # 'HOST': 'localhost',  # Change this to the PostgreSQL server's address
+        # 'PORT': '5432',  # Change this to the PostgreSQL server's port
     }
 }
 

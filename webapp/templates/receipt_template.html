@@ -5,8 +5,8 @@
 
     <style>
       body {
-          font-family: "Times New Roman", Times, serif;
-          font-size: 14px;
+        font-family: "Times New Roman", Times, serif;
+        font-size: 14px;
       }
       .profile {
         padding-left: 10px;
@@ -17,7 +17,7 @@
       .tables {
         margin-top: 40px;
       }
-      #logo{
+      #logo {
         border-radius: 25px;
       }
     </style>
@@ -35,9 +35,7 @@
             width="300"
             height="200"
           />
-          {% else %}
-            No Logo
-          {% endif %}
+          {% else %} No Logo {% endif %}
         </td>
         <td class="profile">{{profile.company_name}}</td>
         <td class="header_receipt">{{receipt.receipt_name}}</td>
@@ -117,7 +115,7 @@
         </tr>
         <tr>
           <td colspan="2"></td>
-          <td>Total Amount Paid:</td>
+          <td>Net Total:</td>
           <td><p id="totalAmountpaid">{{receipt.total_amount}}</p></td>
         </tr>
       </tbody>
@@ -129,14 +127,16 @@
       </tr>
       <tr>
         <td>
-           <img
-              id="manual_signatureImage"
-              src="{{ profile.manual_signature_image}}"
-              class="mt-4"
-              height="70"
-            />
+          <img
+            id="manual_signatureImage"
+            src="{{ profile.manual_signature_image}}"
+            class="mt-4"
+            height="70"
+          />
 
-         <p> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{profile.title}}</p>
+          <p>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{profile.title}}
+          </p>
           {% if profile.signature_image %}
           <img
             id="signatureImage"
@@ -144,13 +144,10 @@
             height="100"
           />
           {% endif %}
-
         </td>
       </tr>
       <tr>
-        <td>
-
-        </td>
+        <td></td>
       </tr>
     </table>
   </body>

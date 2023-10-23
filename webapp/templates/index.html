@@ -271,7 +271,7 @@
                   </tr>
                   <tr>
                     <td colspan="2"></td>
-                    <td>Total Amount Paid</td>
+                    <td>Net Total:</td>
                     <td><p id="totalAmountpaid"></p></td>
                   </tr>
                 </tbody>
@@ -339,7 +339,16 @@
 
               {% endif %}
             </p>
-            <p><input type="text" value="{{ user_profile.title}}" class="rounded-2 border border-2" placeholder="Name or Title" id="title" name="title"></p>
+            <p>
+              <input
+                type="text"
+                value="{{ user_profile.title}}"
+                class="rounded-2 border border-2"
+                placeholder="Name or Title"
+                id="title"
+                name="title"
+              />
+            </p>
           </div>
         </div>
         <!-- Signature Modal -->
@@ -412,12 +421,13 @@
               class="signature_edit_label text-center rounded-3 border border-1"
               >Edit Seal</label
             >
-             <a
+            <a
               class="signature_edit_label text-center rounded-3 border border-1 text-decoration-none text-dark"
               href="#"
               id="delete_sign"
-              >
-               Delete Seal</a>
+            >
+              Delete Seal</a
+            >
             <input
               type="file"
               id="signature_edit"
@@ -468,7 +478,7 @@
         </button>
       </div>
       {%else%}
-         <div class="col text-center">
+      <div class="col text-center">
         <a href="{% url 'webapp:login' %}" class="btn btn-success">
           Generate Receipt
         </a>
