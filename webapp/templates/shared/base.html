@@ -34,6 +34,13 @@
       integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
       crossorigin="anonymous"
     ></script>
+    <!-- Google Tag Manager -->
+      <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+      new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+      j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+      'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+      })(window,document,'script','dataLayer','GTM-PW3C9SPP');</script>
+      <!-- End Google Tag Manager -->
     <!-- Your custom script -->
     <script src="{% static 'js/main.js' %}"></script>
     <script src="{% static 'js/login.js' %}"></script>
@@ -45,6 +52,7 @@
     <title>Digital Paperwork</title>
   </head>
   <body>
+
     {% block nav %}
     {% include "shared/navbar.html" %}
     {% endblock %}
@@ -55,5 +63,9 @@
     {%endblock %}
     {% block body%}
     {% endblock%}
+   <!-- Google Tag Manager (noscript) -->
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PW3C9SPP"
+    height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
   </body>
 </html>
